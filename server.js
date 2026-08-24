@@ -19,7 +19,7 @@ let DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || 'https://discord.co
 const SESSION_SECRET = process.env.SESSION_SECRET || 'mr-checker-secret-change-me';
 let DISCORD_CLIENT_ID = process.env.DISCORD_CLIENT_ID || '1520933782667001856';
 let DISCORD_CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET || '';
-let DISCORD_REDIRECT_URI = process.env.DISCORD_REDIRECT_URI || `http://localhost:${PORT}/auth/discord/callback`;
+let DISCORD_REDIRECT_URI = process.env.DISCORD_REDIRECT_URI || `http://mr-gen.shop:${PORT}/auth/discord/callback`;
 let BOT_TOKEN = process.env.BOT_TOKEN || process.env.DISCORD_BOT_TOKEN || '';
 let ADMIN_IDS = (process.env.ADMIN_IDS || '1520933782667001856').split(',').map(s=>s.trim()).filter(Boolean);
 
