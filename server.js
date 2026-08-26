@@ -8,6 +8,9 @@ const path = require('path');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const fs = require('fs');
+const discord = require('discord.js');
+process.on('unhandledRejection', (reason)=>{ console.error('[unhandledRejection]', (reason && reason.message) || reason); });
+process.on('uncaughtException', (err)=>{ console.error('[uncaughtException]', (err && err.message) || err); });
 
 const app = express();
 app.disable('x-powered-by');
@@ -359,6 +362,14 @@ async function zapSolveOne(accountLine, premium){
     }
 }
 
+// ========== Bot accounts pool (owner-managed) ==========
+const BOT_ACCOUNTS_FILE = path.join(__dirname, 'bot_accounts.json');
+let botAccounts = [];
+const botCooldown = new Map();
+function loadBotAccounts(){ try { const a = JSON.parse(fs.readFileSync(BOT_ACCOUNTS_FILE,'utf8')); if (Array.isArray(a)) botAccounts = a; } catch(e){ botAccounts = []; } }
+function saveBotAccounts(){ try { fs.writeFileSync(BOT_ACCOUNTS_FILE, JSON.stringify(botAccounts)); } catch(e){} }
+loadBotAccounts();
+
 // ========== API ENDPOINTS ==========
 app.post('/api/check', apiLimiter, submitLimiter, requireLogin, async (req, res) => {
     const { accounts } = req.body;
@@ -483,6 +494,50 @@ app.post('/api/solve-captcha', apiLimiter, requireLogin, async (req,res)=>{
 });
 app.get('/api/solver-credits', async (req,res)=>{ const r=await checkSolverCredits(); res.json(r); });
 app.get('/api/solver-available', (req,res)=>{ res.json({ available: availableSolvers }); });
+
+// ===== Bot accounts (owner) =====
+app.get('/api/admin/bot-accounts', requireAdmin, (req,res)=>{
+  const text = botAccounts.map(function(a){ return a.username+':'+a.password+':'+a.cookie; }).join('\n');
+  res.json({ count: botAccounts.length, text: text });
+});
+app.post('/api/admin/bot-accounts', requireAdmin, (req,res)=>{
+  const text = req.body && req.body.text;
+  if (typeof text !== 'string') return res.status(400).json({ error:'no text' });
+  const lines = text.split('\n').map(function(s){ return s.trim(); }).filter(Boolean);
+  const accs = [];
+  for (const line of lines){
+    const i1 = line.indexOf(':'); if (i1 < 0) continue;
+    const i2 = line.indexOf(':', i1+1); if (i2 < 0) continue;
+    const username = line.slice(0,i1); const password = line.slice(i1+1,i2); const cookie = line.slice(i2+1);
+    if (!username || !password || !cookie) continue;
+    accs.push({ username:username, password:password, cookie:cookie });
+  }
+  botAccounts = accs; saveBotAccounts();
+  res.json({ ok:true, count: accs.length });
+});
+
+// ===== Discord bot solve (called by the bot, verified via BOT_TOKEN) =====
+app.post('/api/bot/solve', async (req,res)=>{
+  const auth = req.get('x-bot-token');
+  if (!BOT_TOKEN || auth !== BOT_TOKEN) return res.status(403).json({ status:'error', message:'Forbidden' });
+  const body = req.body || {};
+  const username = body.username; const password = body.password; const discordId = body.discordId;
+  if (!username || !password) return res.status(400).json({ status:'error', message:'username & password required' });
+  const now = Date.now();
+  if (discordId){ const last = botCooldown.get(discordId) || 0; if (now - last < 15000) return res.status(429).json({ status:'error', message:'انتظر قليلاً ثم أعد المحاولة' }); }
+  const acc = botAccounts.find(function(a){ return a.username === username && a.password === password; });
+  if (!acc) return res.status(404).json({ status:'error', message:'الحساب غير مسجل لدى صاحب البوت' });
+  try {
+    const line = acc.username + ':' + acc.password + ':' + acc.cookie;
+    const r = await zapSolveOne(line);
+    if (discordId) botCooldown.set(discordId, now);
+    if (r.solved) availableSolvers = Math.max(0, availableSolvers - 1);
+    if (r.solved) return res.json({ status:'solved', solved:true });
+    if (r.skip) return res.json({ status:'already', solved:false });
+    if (r.failed) return res.json({ status:'failed', solved:false, error: r.error || 'فشل الحل' });
+    return res.json({ status:'error', solved:false, error: r.error || 'خطأ في MR Solver' });
+  } catch(e){ res.status(500).json({ status:'error', message: e.message }); }
+});
 app.get('/api/solver-status/:jobId', requireLogin, (req,res)=>{
     const job = solveJobs.get(req.params.jobId);
     if(!job) return res.status(404).json({status:'error', message:'Job not found'});
@@ -616,6 +671,89 @@ app.post('/api/admin/users/:id/add-balance', requireAdmin, (req,res)=>{
 app.use(express.static('public'));
 app.get('/', function(req,res){ res.sendFile(path.join(__dirname,'public','index.html')); });
 
+function startBot(){
+  if (!BOT_TOKEN) { console.log('[BOT] BOT_TOKEN غير مضبوط — البوت متوقف'); return; }
+  try {
+    const { Client, GatewayIntentBits, Events, ButtonBuilder, ButtonStyle, ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = discord;
+    const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
+    client.on('error', (e)=>{ console.error('[BOT] connection error', (e && e.message) || e); });
+    function buildSolveModal(){
+      const userInput = new TextInputBuilder().setCustomId('bot_user').setLabel('اسم المستخدم').setStyle(TextInputStyle.Short).setRequired(true);
+      const passInput = new TextInputBuilder().setCustomId('bot_pass').setLabel('كلمة المرور').setStyle(TextInputStyle.Short).setRequired(true);
+      return new ModalBuilder().setCustomId('bot_solve_modal').setTitle('حل الكابتشا').addComponents(new ActionRowBuilder().addComponents(userInput), new ActionRowBuilder().addComponents(passInput));
+    }
+    async function postButtonMessage(channel){
+      try {
+        const msgs = await channel.messages.fetch({ limit: 20 });
+        for (const m of msgs.values()){ if (m.author.id === client.user.id && m.components && m.components.length){ try { await m.delete(); } catch(e){} } }
+      } catch(e){}
+      const payload = {
+        flags: 32768,
+        components: [
+          {
+            type: 17,
+            accent_color: 0x1e40af,
+            components: [
+              { type: 10, content: '# اصلاح حسابات التحقق' },
+              { type: 10, content: 'شريت حساب من عندنا وطلع لك اختبار "تحقق من أنك لست روبوت"؟\n\nلا تشيل هم! كل اللي عليك تضغط على الزر تحت وتكتب بيانات الحساب بالشكل التالي:\nUsername:Password\n\nبنفحص الحساب بسرعة وبسرية تامة، وإذا تبين أنه من متجرنا بنحل لك المشكلة ونصلحه فوراً.' },
+              { type: 12, items: [ { media: { url: 'https://cdn.phototourl.com/free/2026-08-26-790f8d60-ead2-471f-8dca-c5a21d6b6516.jpg' } } ] },
+              {
+                type: 1,
+                components: [
+                  { type: 2, style: 1, label: 'حل كابتشا', emoji: { name: '🔓' }, custom_id: 'btn_solve_captcha' }
+                ]
+              }
+            ]
+          }
+        ]
+      };
+      await channel.send(payload);
+    }
+    client.on(Events.InteractionCreate, async (interaction) => {
+      try {
+        if (interaction.isButton()){
+          if (interaction.customId === 'btn_solve_captcha'){
+            await interaction.showModal(buildSolveModal());
+          }
+        } else if (interaction.isModalSubmit()){
+          if (interaction.customId === 'bot_solve_modal'){
+            await interaction.deferReply({ ephemeral: true });
+            const username = interaction.fields.getTextInputValue('bot_user');
+            const password = interaction.fields.getTextInputValue('bot_pass');
+            const discordId = interaction.user.id;
+            let msg;
+            try {
+              const resp = await axios.post('http://127.0.0.1:'+PORT+'/api/bot/solve', { username:username, password:password, discordId:discordId }, { headers:{'Content-Type':'application/json','x-bot-token':BOT_TOKEN}, timeout:100000 });
+              const d = resp.data || {}; const st = resp.status;
+              if (st === 404) msg = '❌ ' + (d.message || 'الحساب غير مسجل');
+              else if (st === 429) msg = '⏳ ' + (d.message || 'انتظر قليلاً');
+              else if (d.solved) msg = '✅ تم حل الكابتشا لحساب: ' + username;
+              else if (d.status === 'already') msg = '⏭️ الحساب محلول مسبقاً: ' + username;
+              else if (d.status === 'failed') msg = '❌ فشل الحل: ' + (d.error || 'غير معروف');
+              else msg = '❌ ' + (d.message || 'خطأ');
+            } catch(e){ msg = '❌ تعذر الاتصال بالموقع'; }
+            await interaction.editReply({ content: msg });
+          }
+        }
+      } catch(e){ console.error('[BOT] interaction error', e); try { await interaction.reply({ content:'خطأ في البوت', ephemeral:true }); } catch(_){} }
+    });
+    client.on(Events.ClientReady, async (c) => {
+      console.log('[BOT] دخل كـ', c.user.tag);
+      const channelId = process.env.BOT_CHANNEL_ID || '';
+      if (channelId){
+        const ch = c.channels.cache.get(channelId);
+        if (ch && ch.isTextBased && ch.isTextBased()) await postButtonMessage(ch);
+        else console.log('[BOT] BOT_CHANNEL_ID غير صحيح');
+      } else {
+        const g = c.guilds.cache.first();
+        if (g){ const ch = g.channels.cache.find(function(x){ return x.isTextBased && x.isTextBased(); }); if (ch) await postButtonMessage(ch); }
+        console.log('[BOT] BOT_CHANNEL_ID غير مضبوط — نشرت الزر في أول روم متاح. لضبطه ثبت BOT_CHANNEL_ID');
+      }
+    });
+    client.login(BOT_TOKEN).catch((e)=>console.error('[BOT] login failed', e.message));
+  } catch(e){ console.error('[BOT] failed to start', e); }
+}
+
 app.listen(PORT, function(){
     console.log('========================================');
     console.log('🔥 MR CHECKER Server running');
@@ -626,4 +764,5 @@ app.listen(PORT, function(){
     console.log('👑 Admin IDs:', ADMIN_IDS.join(', ')||'لا يوجد');
     if(!DISCORD_CLIENT_SECRET) console.log('⚠️  ضع DISCORD_CLIENT_SECRET في .env أو عدل من صفحة الادمن');
     console.log('========================================');
+    startBot();
 });
