@@ -932,7 +932,15 @@
                 el=document.getElementById('cfgBrag'); if(el && cfg.RECEIVE_BRAG_NUMBER) el.value = cfg.RECEIVE_BRAG_NUMBER;
             }
         }catch(e){}
-        loadPendingRecharges(); loadAdminUsers();
+        loadPendingRecharges(); loadAdminUsers(); loadBotAccountsAdmin();
+    }
+    async function loadBotAccountsAdmin(){
+        try {
+            var r = await fetch('/api/admin/bot-accounts', { credentials:'include' });
+            var d = await r.json();
+            var ta = document.getElementById('botAccountsText'); if (ta && d.text != null) ta.value = d.text;
+            var cnt = document.getElementById('botAccountsCount'); if (cnt) cnt.textContent = (d.count||0) + ' حساب محفوظ';
+        } catch(e){}
     }
     async function saveAdminConfig(){
         var payload = {};
@@ -1335,6 +1343,17 @@
         if (adminRefreshBtn) adminRefreshBtn.addEventListener('click', loadAdminData);
         var adminSaveBtn = document.getElementById('adminSave');
         if (adminSaveBtn) adminSaveBtn.addEventListener('click', saveAdminConfig);
+        var botAccountsSave = document.getElementById('botAccountsSave');
+        if (botAccountsSave) botAccountsSave.addEventListener('click', function () {
+          var ta = document.getElementById('botAccountsText'); var cnt = document.getElementById('botAccountsCount');
+          if (!ta) return;
+          botAccountsSave.disabled = true;
+          fetch('/api/admin/bot-accounts', { method:'POST', credentials:'include', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ text: ta.value }) })
+            .then(function(r){ return r.json().then(function(j){ return { ok:r.ok, data:j }; }); })
+            .then(function(res){ var info = res.ok ? ('تم الحفظ: ' + (res.data.count!=null?res.data.count:'')) : ('خطأ: ' + (res.data.error||'')); if (cnt) cnt.textContent = info; if (res.ok) loadBotAccountsAdmin(); })
+            .catch(function(e){ if (cnt) cnt.textContent = 'خطأ: ' + e.message; })
+            .finally(function(){ botAccountsSave.disabled = false; });
+        });
         var adminClearBtn = document.getElementById('adminClearSessions');
         if (adminClearBtn) adminClearBtn.addEventListener('click', function () { addLog('Demo clear — no persistent sessions in memory store', 'info'); });
         // حركة لما اضغط الزر — تاثير لكل الأزرار
