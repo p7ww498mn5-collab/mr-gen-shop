@@ -49,7 +49,23 @@
                 connFail: 'Connection failed.',
                 invalidResp: 'The server returned an invalid response.',
                 serverErr: 'Server error ({s}).'
-            }
+            },
+            navLabel: 'Overview', navOverview: 'Overview', navAccounts: 'Accounts', navChecker: 'Cookie Checker', navCaptcha: 'Solve Captcha', navFormatter: 'Formatter', navHistory: 'History', navAdmin: 'Admin',
+            footMarket: 'MR market', loginDiscord: 'Login with Discord', loginHint: 'Login so you can check accounts', logout: 'Logout',
+            topbarTitle: 'Cookie Checker', topbarPill: 'Supports 100 accounts at once',
+            checkerTitle: 'Cookie Checker',             checkerSub1: 'Paste up to', checkerSub2: 'accounts in', checkerSub3: 'format or', checkerSubCode: 'user:pass', checkerSubCode2: 'user:pass:cookie',             checkerSub: 'Paste up to 100 accounts in user:pass:cookie or user:pass format and press check. The animated word', checkerSubEnd: 'appears while checking.', checkerInputTitle: 'Accounts', dropHint: 'Drag a .txt file here', resultsTitle: 'Results', copyAll: 'Copy all',
+            loginReqTitle: 'You must login with Discord first to check', loginReqBtn: 'Login',
+            clearAcc: 'Clear accounts', uploadTxt: 'Upload .txt', pasteBtn: 'Paste',
+            statTotal: 'Total', statAlive: 'Alive', statDead: 'Dead', statBanned: 'Banned', statFacelock: 'Locked', statCaptcha: 'Captcha',
+            resultsUsername: 'USERNAME', resultsStatus: 'STATUS', logReady: 'Ready to check...',
+            capTitle: 'Solve Captcha', capSub1: 'Paste accounts in', capSub2: 'format (cookie must contain', capSub3: ') and press solve — the system sends them to MR Solver.', capLoginReq: 'You must login with Discord first to solve captcha', capClear: 'Clear', capUpload: 'Upload .txt', capType: 'Solve type:', capTypeIngame: 'In-game (default)', capTypeUnlock: 'Unlock (captcha-lock)', capSolve: 'Solve Captcha', capResults: 'Results', capSolved: 'Solved', capAlready: 'Already solved', capFailed: 'Failed', capDownload: 'Download solved.txt', capReady: 'Ready to solve captcha...', capPricing: 'Min 30 accounts • 30 accounts = 2.5 SAR • 2.5 SAR balance required',
+            accTitle: 'Accounts', accSub: 'Add up to 100 accounts at once in', accAdd: 'Add accounts', accToChecker: 'Check in cookie checker', accReady: 'accounts ready', accList: 'Saved accounts list', accClearSaved: 'Clear',
+            clearAcctHist: 'Clear',
+            fmtInput: 'Input', fmtOutput: 'Output', fmtConvert: 'Convert', fmtCopy: 'Copy', fmtClear: 'Clear', fmtUse: 'Use', fmtStats: '0 lines', fmtDownload: 'Download', fmtTitle: 'Formatter', fmtDesc: 'Reformat accounts between formats instantly with live stats.', fmtUpload: 'Upload file', fmtSwap: 'Swap', fmtTarget: 'Target format', fmtUserPass: 'user:pass', fmtUserPassCookie: 'user:pass:cookie', fmtCookieOnly: 'cookie', fmtUserOnly: 'user', fmtPassOnly: 'pass', fmtJson: 'JSON', fmtSeparator: 'Separator', fmtStatTotal: 'Total', fmtStatCookie: 'With cookie', fmtStatCookieOnly: 'Cookie only', fmtStatValid: 'Valid', fmtDetectHint: 'Paste accounts to see live stats...', fmtDetected: 'Detected: {f}', adminPanel: 'Admin Panel', adminOnly: 'Admin only', adminConfig: 'System Settings', adminTokens: 'Tokens', adminBot: 'Bot & Permissions', adminPayment: 'Payment Settings', adminCurrent: 'Current Server Config', adminPendingTitle: 'Pending Recharge Requests', adminUsersTitle: 'Registered Users', adminAuthorize: 'Authorize', adminBotInvite: "Bot's invite to server", adminBotInviteText: 'The bot needs an invite:', adminRestart: 'After saving, restart the bot:', adminNeededLogin: 'required for login', adminRajhi: 'Al Rajhi', adminBrag: 'BRAG', filterAll: 'All',
+            walletTitle: 'Wallet', walletSub: 'Balance is deducted when solving captcha (cost:', walletBalanceLabel: 'Your current balance', walletChargeBtn: 'Recharge balance', rechargeFormTitle: 'Recharge request', rechargeAmount: 'Amount', rechargeMethod: 'Payment method', rechargeBrag: 'BRAG — phone number:', rechargeIban: 'Al Rajhi — IBAN:', rechargeName: 'Name:', rechargeReceipt: 'Receipt image', rechargeSubmit: 'Send request', rechargeHistoryTitle: 'Recharge history', noRecharges: 'None',
+            adminTitle: 'Admin Panel', adminSub: 'Linked to the site — login with Discord then edit tokens and run the bot. This menu only appears for you.', authorize: 'Authorize:', authorizeLink: 'click here to login with Discord', botInvite: "Bot's invite to server", cfgZpL: 'ZEROPOINT_API_KEY', cfgZsL: 'ZAPZONEX_API_KEY', cfgWhL: 'DISCORD_WEBHOOK_URL', cfgCsL: 'DISCORD_CLIENT_SECRET (required for login)', cfgBotL: 'BOT_TOKEN (to run bot)', cfgAdminsL: 'ADMIN_IDS (comma separated)', cfgIbanL: 'RECEIVE_IBAN (Al Rajhi receive account)', cfgBragL: 'RECEIVE_BRAG_NUMBER (BRAG phone for receiving)', cfgNameL: 'RECEIVE_NAME (account holder name)', cfgCostL: 'CAPTCHA_COST (captcha cost per account)', adminSave: 'Save & run', adminRefresh: 'Refresh', adminNote: 'After saving, restart the bot:', pendingTitle: 'Pending recharge requests', usersTitle: 'Registered users',
+            statusPending: 'Pending', statusProcessing: 'Processing', statusCompleted: 'Completed', statusFailed: 'Failed', statusCancelled: 'Cancelled',
+            userBalanceLabel: 'Balance: '
         },
         ar: {
             total: 'الإجمالي', lastUpdate: 'آخر تحديث', apiStatus: 'واجهة ZeroPoint',
@@ -91,7 +107,23 @@
                 connFail: 'فشل الاتصال.',
                 invalidResp: 'أرجع الخادم استجابة غير صالحة.',
                 serverErr: 'خطأ في الخادم ({s}).'
-            }
+            },
+            navLabel: 'نظرة عامة', navOverview: 'نظرة عامة', navAccounts: 'الحسابات', navChecker: 'فاحص الكوكيز', navCaptcha: 'حل كابتشا', navFormatter: 'المنسق', navHistory: 'السجل', navAdmin: 'الادمن',
+            footMarket: 'MR market', loginDiscord: 'تسجيل دخول بالديسكورد', loginHint: 'سجل دخولك عشان تقدر تفحص', logout: 'تسجيل الخروج',
+            topbarTitle: 'فاحص الكوكيز', topbarPill: 'يدعم 100 حساب دفعة واحدة',
+            checkerTitle: 'فاحص الكوكيز',             checkerSub1: 'الصق حتى', checkerSub2: 'حساب بصيغة', checkerSub3: 'أو', checkerSubCode: 'user:pass', checkerSubCode2: 'user:pass:cookie',             checkerSub: 'الصق حتى 100 حساب بصيغة user:pass:cookie أو user:pass واضغط فحص. الكلمة المتحركة', checkerSubEnd: 'تظهر أثناء الفحص.', checkerInputTitle: 'الحسابات', dropHint: 'اسحب ملف .txt هنا', resultsTitle: 'النتائج', copyAll: 'نسخ الكل',
+            loginReqTitle: 'يجب تسجيل الدخول بالديسكورد أولاً للفحص', loginReqBtn: 'تسجيل دخول',
+            clearAcc: 'مسح الحسابات', uploadTxt: 'رفع ملف .txt', pasteBtn: 'لصق',
+            statTotal: 'الإجمالي', statAlive: 'سليم', statDead: 'ميت', statBanned: 'محظور', statFacelock: 'مقفل', statCaptcha: 'كابتشا',
+            resultsUsername: 'اسم المستخدم', resultsStatus: 'الحالة', logReady: 'جاهز للفحص...',
+            capTitle: 'حل كابتشا', capSub1: 'الصق الحسابات بصيغة', capSub2: 'الكوكي لازم يحتوي', capSub3: ') واضغط حل — النظام يرسلها لـ MR Solver ويحل الكابتشا.', capLoginReq: 'يجب تسجيل الدخول بالديسكورد أولاً لحل الكابتشا', capClear: 'مسح', capUpload: 'رفع ملف .txt', capType: 'نوع الحل:', capTypeIngame: 'في اللعبة (افتراضي)', capTypeUnlock: 'فك القفل (captcha-lock)', capSolve: 'حل الكابتشا', capResults: 'النتائج', capSolved: 'تم الحل', capAlready: 'أصلاً محلول', capFailed: 'فشل', capDownload: 'تحميل solved.txt', capReady: 'جاهز لحل الكابتشا...', capPricing: 'الحد الأدنى 30 حساب • سعر 30 حساب = 2.5 ريال • مطلوب رصيد 2.5 ريال',
+            accTitle: 'الحسابات', accSub: 'أضف حتى 100 حساب مرة واحدة بصيغة', accAdd: 'إضافة الحسابات', accToChecker: 'فحص في فاحص الكوكيز', accReady: 'حساب جاهز', accList: 'قائمة الحسابات المحفوظة', accClearSaved: 'مسح',
+            clearAcctHist: 'مسح',
+            fmtInput: 'المدخل', fmtOutput: 'المخرج', fmtConvert: 'تحويل', fmtCopy: 'نسخ', fmtClear: 'مسح', fmtUse: 'استخدم', fmtStats: '0 سطر', fmtDownload: 'تحميل', fmtTitle: 'المنسق', fmtDesc: 'نسّق الحسابات بين الصيغ المختلفة فورياً مع عرض الإحصائيات.', fmtUpload: 'رفع ملف', fmtSwap: 'تبديل', fmtTarget: 'الصيغة المطلوبة', fmtUserPass: 'user:pass', fmtUserPassCookie: 'user:pass:cookie', fmtCookieOnly: 'cookie', fmtUserOnly: 'user', fmtPassOnly: 'pass', fmtJson: 'JSON', fmtSeparator: 'الفاصل', fmtStatTotal: 'الإجمالي', fmtStatCookie: 'فيها كوكي', fmtStatCookieOnly: 'كوكي فقط', fmtStatValid: 'صالح', fmtDetectHint: 'الصق الحسابات لعرض الإحصائيات...', fmtDetected: 'تم اكتشاف: {f}', adminPanel: 'لوحة التحكم', adminOnly: 'لك فقط', adminConfig: 'إعدادات النظام', adminTokens: 'التوكنات', adminBot: 'البوت والصلاحيات', adminPayment: 'إعدادات الدفع', adminCurrent: 'إعدادات السيرفر الحالية', adminPendingTitle: 'طلبات الشحن المعلقة', adminUsersTitle: 'المستخدمون المسجلون', adminAuthorize: 'تفويض', adminBotInvite: 'دعوة البوت للسيرفر', adminBotInviteText: 'البوت يحتاج دعوة:', adminRestart: 'بعد الحفظ، أعد تشغيل البوت:', adminNeededLogin: 'لازم لتسجيل الدخول', adminRajhi: 'الراجحي', adminBrag: 'برق', filterAll: 'الكل',
+            walletTitle: 'المحفظة', walletSub: 'رصيدك يُخصم عند حل الكابتشا (التكلفة:', walletBalanceLabel: 'رصيدك الحالي', walletChargeBtn: 'اشحن الرصيد', rechargeFormTitle: 'طلب شحن', rechargeAmount: 'المبلغ', rechargeMethod: 'طريقة الدفع', rechargeBrag: 'برق — رقم الجوال:', rechargeIban: 'الراجحي — IBAN:', rechargeName: 'الاسم:', rechargeReceipt: 'صورة الإيصال', rechargeSubmit: 'إرسال الطلب', rechargeHistoryTitle: 'سجل الشحن', noRecharges: 'لا يوجد',
+            adminTitle: 'لوحة الادمن', adminSub: 'مربوط على الموقع — سجل دخولك بالديسكورد ثم عدل التوكنات وشغل البوت. لن تظهر هذه القائمة إلا لك.', authorize: 'تفويض:', authorizeLink: 'اضغط هنا لتسجيل دخولك بالديسكورد', botInvite: 'دعوة البوت للسيرفر', cfgZpL: 'ZEROPOINT_API_KEY', cfgZsL: 'ZAPZONEX_API_KEY', cfgWhL: 'DISCORD_WEBHOOK_URL', cfgCsL: 'DISCORD_CLIENT_SECRET (لازم لتسجيل الدخول)', cfgBotL: 'BOT_TOKEN (لتشغيل البوت)', cfgAdminsL: 'ADMIN_IDS (افصل بفاصلة)', cfgIbanL: 'RECEIVE_IBAN (حساب الراجحي للاستقبال)', cfgBragL: 'RECEIVE_BRAG_NUMBER (رقم جوال برق للاستقبال)', cfgNameL: 'RECEIVE_NAME (اسم صاحب الحساب)', cfgCostL: 'CAPTCHA_COST (تكلفة حل الكابتشا لكل حساب)', adminSave: 'حفظ وشغّل', adminRefresh: 'تحديث', adminNote: 'بعد الحفظ، أعد تشغيل البوت:', pendingTitle: 'طلبات الشحن المعلقة', usersTitle: 'المستخدمون المسجلون',
+            statusPending: 'بانتظار', statusProcessing: 'قيد المعالجة', statusCompleted: 'اكتمل', statusFailed: 'فشل', statusCancelled: 'ملغى',
+            userBalanceLabel: 'رصيد: '
         }
     };
 
@@ -151,7 +183,9 @@
         var normalized = normalizeStatus(status);
         var label = tStatus(normalized) || String(status || 'Unknown').replace(/_/g, ' ');
         var cssClass = ['alive', 'dead', 'banned', 'facelock', 'captcha', 'error', 'notxzin', 'invalid'].indexOf(normalized) !== -1 ? normalized : '';
-        return '<span class="status-badge ' + cssClass + '">' + escapeHtml(label) + '</span>';
+        var iconMap = { alive: 'fa-circle-check', dead: 'fa-circle-xmark', banned: 'fa-ban', facelock: 'fa-lock', captcha: 'fa-robot', error: 'fa-triangle-exclamation', notxzin: 'fa-minus-circle', invalid: 'fa-circle-question' };
+        var icon = iconMap[normalized] || 'fa-circle';
+        return '<span class="status-badge ' + cssClass + '"><i class="fas ' + icon + '"></i> ' + escapeHtml(label) + '</span>';
     }
 
     function setLastUpdate() {
@@ -207,12 +241,24 @@
         var inputEl = document.getElementById('fmtInput');
         var outputEl = document.getElementById('fmtOutput');
         var statsEl = document.getElementById('fmtStats');
+        var inCountEl = document.getElementById('fmtInCount');
+        var outCountEl = document.getElementById('fmtOutCount');
+        var detectEl = document.getElementById('fmtDetected');
         if (!inputEl || !outputEl) return;
         var text = inputEl.value;
-        if (!text.trim()) { addLog(tm('noFormat'), 'warning'); if (statsEl) statsEl.textContent = '0 lines'; return; }
+        var totalIn = text.replace(/\r/g, '').split('\n').filter(function (l) { return l.trim(); }).length;
+        if (inCountEl) inCountEl.textContent = String(totalIn);
+        if (!text.trim()) {
+            outputEl.value = '';
+            if (statsEl) statsEl.textContent = currentLang === 'ar' ? '0 سطر' : '0 lines';
+            if (outCountEl) outCountEl.textContent = '0';
+            if (detectEl) detectEl.textContent = t('fmtDetectHint');
+            addLog(tm('noFormat'), 'warning');
+            return;
+        }
         var selectedFmt = (document.querySelector('input[name="fmt"]:checked') || {}).value || 'user_pass';
-        var sepBtn = document.querySelector('.sep-btn.active');
-        var sep = sepBtn ? sepBtn.dataset.sep : ':';
+        var activeSep = document.querySelector('.sep-btn.active');
+        var sep = activeSep ? activeSep.dataset.sep : ((document.getElementById('fmtSepCustom') && document.getElementById('fmtSepCustom').value) || ':');
         var accounts = smartParseAccounts(text);
         var lines = [];
         accounts.forEach(function (a) {
@@ -243,7 +289,15 @@
             }
         });
         outputEl.value = lines.join('\n');
-        if (statsEl) statsEl.textContent = lines.length + ' lines';
+        if (outCountEl) outCountEl.textContent = String(lines.length);
+        if (statsEl) statsEl.textContent = lines.length + (currentLang === 'ar' ? ' سطر' : ' lines');
+        var withCookie = accounts.filter(function (a) { return a.cookie; }).length;
+        var cookieOnly = accounts.filter(function (a) { return a.username === 'cookie_only'; }).length;
+        if (detectEl) {
+            detectEl.textContent = (currentLang === 'ar'
+                ? 'الإجمالي: ' + accounts.length + ' • فيها كوكي: ' + withCookie + ' • كوكي فقط: ' + cookieOnly
+                : 'Total: ' + accounts.length + ' • With cookie: ' + withCookie + ' • Cookie only: ' + cookieOnly);
+        }
         addLog(fmt(tm('formatted'), { n: lines.length }), 'success');
     }
 
@@ -297,10 +351,28 @@
         return counts;
     }
 
+    var currentResultFilter = 'all';
+    var currentResultSearch = '';
+    function applyResultFilter() {
+        if (!resultsBody) return;
+        resultsBody.querySelectorAll('tr[data-status]').forEach(function (row) {
+            var okStatus = currentResultFilter === 'all' || normalizeStatus(row.dataset.status) === currentResultFilter;
+            var okSearch = !currentResultSearch || (row.dataset.username || '').toLowerCase().indexOf(currentResultSearch.toLowerCase()) !== -1;
+            row.style.display = (okStatus && okSearch) ? '' : 'none';
+        });
+    }
+
+    function setResultFilter(status) {
+        currentResultFilter = (status === 'checker') ? 'all' : status;
+        document.querySelectorAll('.filter-pill').forEach(function (x) { x.classList.toggle('active', x.dataset.filter === currentResultFilter); });
+        applyResultFilter();
+    }
+
     function updateStats() {
         var counts = getCounts();
         var total = 0;
         Object.keys(counts).forEach(function (status) { total += counts[status]; });
+        var rcEl = document.getElementById('resultsCount'); if (rcEl) rcEl.textContent = total;
         countIds.forEach(function (status) {
             var refs = countRefs[status];
             if (refs.main) refs.main.textContent = counts[status];
@@ -319,6 +391,11 @@
         var sm = document.getElementById('statModerated'); if (sm) sm.textContent = counts.facelock;
         var sr = document.getElementById('statReview'); if (sr) sr.textContent = counts.captcha;
         var sh = document.getElementById('statHold'); if (sh) sh.textContent = counts.notxzin;
+        // تحديث عدادات الفلاتر
+        var setF = function (id, v) { var e = document.getElementById(id); if (e) e.textContent = v; };
+        setF('fAll', total); setF('fAlive', counts.alive); setF('fDead', counts.dead);
+        setF('fBanned', counts.banned); setF('fFacelock', counts.facelock); setF('fCaptcha', counts.captcha);
+        applyResultFilter();
     }
 
     function createResultRow(number, username, status) {
@@ -331,7 +408,10 @@
         var usernameStrong = document.createElement('strong'); usernameStrong.textContent = String(username || 'unknown');
         usernameCell.appendChild(usernameStrong);
         var statusCell = document.createElement('td'); statusCell.innerHTML = getStatusBadge(normalized);
-        row.appendChild(numberCell); row.appendChild(usernameCell); row.appendChild(statusCell);
+        var copyCell = document.createElement('td');
+        var copyBtn = document.createElement('button'); copyBtn.className = 'btn btn-ghost btn-sm copy-row'; copyBtn.dataset.username = String(username || ''); copyBtn.title = 'نسخ'; copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+        copyCell.appendChild(copyBtn);
+        row.appendChild(numberCell); row.appendChild(usernameCell); row.appendChild(statusCell); row.appendChild(copyCell);
         return row;
     }
 
@@ -341,16 +421,19 @@
         accountCounter += 1;
         var empty = resultsBody.querySelector('.empty-row'); if (empty) empty.remove();
         resultsBody.appendChild(createResultRow(accountCounter, username, normalized));
-        var wrapper = document.getElementById('resultsWrapper');
-        if (wrapper) wrapper.style.display = 'block';
+        var card = document.getElementById('resultsCard'); if (card) card.style.display = 'block';
+        var wrapper = document.getElementById('resultsWrapper'); if (wrapper) wrapper.style.display = 'block';
+        var tb = document.getElementById('resultsToolbar'); if (tb) tb.style.display = 'flex';
+        var rf = document.getElementById('resultFilter'); if (rf) rf.style.display = 'flex';
         updateStats();
+        applyResultFilter();
     }
 
     function renderEmptyState(targetBody, message) {
         if (!targetBody) return;
         targetBody.replaceChildren();
         var row = document.createElement('tr'); row.className = 'empty-row';
-        var cell = document.createElement('td'); cell.colSpan = 3; cell.textContent = message;
+        var cell = document.createElement('td'); cell.colSpan = 4; cell.textContent = message;
         row.appendChild(cell); targetBody.appendChild(row);
     }
 
@@ -414,6 +497,7 @@
         isRunning = true;
         var ind = document.getElementById('checkingIndicator');
         if(ind) ind.style.display='block';
+        var pg = document.getElementById('checkProgress'); if (pg) { pg.style.display = 'flex'; var pbar0 = document.getElementById('checkProgressBar'); if (pbar0) pbar0.style.width = '0%'; var pct0 = document.getElementById('checkProgressPct'); if (pct0) pct0.textContent = '0%'; }
         var startBtn = document.getElementById('startBtn');
         if (startBtn) { startBtn.disabled = true; startBtn.innerHTML = '<i class="fas fa-spinner checking-spinner"></i> <span class="checking-animated">Checking...</span>'; }
         addLog(fmt(tm('checking'), { n: accounts.length }), 'info');
@@ -423,10 +507,10 @@
                 var msg=(result && result.message) || tm('connFail');
                 if (msg && msg.includes('تسجيل الدخول')) { addLog(msg,'error'); window.location.href='/auth/discord'; }
                 else addLog(msg,'error');
-                isRunning = false; resetStartButton(); if(ind) ind.style.display='none'; return;
+                isRunning = false; resetStartButton(); if(ind) ind.style.display='none'; var pg=document.getElementById('checkProgress'); if(pg) pg.style.display='none'; return;
             }
             var results = Array.isArray(result.results) ? result.results : [];
-            if (!results.length) { addLog(fmt(tm('noResults'), { s: result.status || 'unknown' }), 'warning'); isRunning = false; resetStartButton(); if(ind) ind.style.display='none'; return; }
+            if (!results.length) { addLog(fmt(tm('noResults'), { s: result.status || 'unknown' }), 'warning'); isRunning = false; resetStartButton(); if(ind) ind.style.display='none'; var pg=document.getElementById('checkProgress'); if(pg) pg.style.display='none'; return; }
             // تدريجي — واحد واحد مو 100 دفعة واحدة
             var idx = 0;
             var total = results.length;
@@ -436,7 +520,7 @@
                     var counts = getCounts();
                     addLog(fmt(tm('complete'), { n: total, a: counts.alive, d: counts.dead, b: counts.banned, f: counts.facelock, c: counts.captcha }), 'success');
                     addHistoryEntry({ date: new Date().toISOString(), total: accounts.length, alive: counts.alive, dead: counts.dead, banned: counts.banned, facelock: counts.facelock, captcha: counts.captcha, status: 'completed', accounts: accounts });
-                    isRunning = false; resetStartButton(); if(ind) ind.style.display='none';
+                    isRunning = false; resetStartButton(); if(ind) ind.style.display='none'; var pg=document.getElementById('checkProgress'); if(pg) pg.style.display='none';
                     return;
                 }
                 var account = results[idx];
@@ -444,6 +528,8 @@
                 addResultToTable(account && account.username ? account.username : 'unknown', normalized);
                 idx++;
                 if(ind) ind.innerHTML = '<i class="fas fa-spinner checking-spinner"></i> Checking... ' + idx + '/' + total + ' <span class="checking-dots"></span>';
+                var pbar = document.getElementById('checkProgressBar'); if (pbar) pbar.style.width = Math.round((idx/total)*100) + '%';
+                var pctEl = document.getElementById('checkProgressPct'); if (pctEl) pctEl.textContent = Math.round((idx/total)*100) + '%';
                 // تمرير تلقائي لآخر جدول
                 var wrapper = document.getElementById('resultsWrapper');
                 if(wrapper) wrapper.scrollTop = wrapper.scrollHeight;
@@ -453,7 +539,7 @@
             return;
         } catch (error) {
             addLog('Error: ' + (error && error.message ? error.message : tm('connFail')), 'error');
-            isRunning = false; resetStartButton(); if(ind) ind.style.display='none';
+            isRunning = false; resetStartButton(); if(ind) ind.style.display='none'; var pg=document.getElementById('checkProgress'); if(pg) pg.style.display='none';
         }
     }
 
@@ -468,6 +554,9 @@
         if(savedList) savedList.innerHTML='<div style="padding:20px;text-align:center;color:#6b7280">لا يوجد حسابات محفوظة</div>';
         var bulkCount = document.getElementById('bulkCount');
         if(bulkCount) bulkCount.textContent='0';
+        var card = document.getElementById('resultsCard'); if (card) card.style.display = 'none';
+        var tb = document.getElementById('resultsToolbar'); if (tb) tb.style.display = 'none';
+        var rf = document.getElementById('resultFilter'); if (rf) rf.style.display = 'none';
         updateStats(); updateLineCount(); rebuildCategoryTables(); showPage('cookie-checker');
         addLog(tm('cleared') + ' — تم مسح الحسابات المحفوظة أيضاً', 'info');
     }
@@ -510,10 +599,11 @@
             });
             var topTitle = document.getElementById('topbarTitle');
             if (topTitle) {
-                var map = { 'cookie-checker':'فاحص الكوكيز','captcha-solver':'حل الكابتشا','api-keys':'مفاتيح الـ API','accounts':'الحسابات','rmz':'RMZ','cart':'السلة','history':'السجل','admin':'Admin Panel','formatter':'المنسق','overview':'نظرة عامة' };
+                var map = { 'cookie-checker':'فاحص الكوكيز','captcha-solver':'حل الكابتشا','wallet':'المحفظة','api-keys':'مفاتيح الـ API','accounts':'الحسابات','rmz':'RMZ','cart':'السلة','history':'السجل','admin':'Admin Panel','formatter':'المنسق','overview':'نظرة عامة' };
                 topTitle.textContent = map[page] || page;
             }
             if (page === 'admin') loadAdminData();
+        if (page === 'wallet' && window.__loadWallet) window.__loadWallet();
             // keep checker wrapper logic for backward compat
             var wrapper = document.getElementById('resultsWrapper');
             if (wrapper) {
@@ -547,14 +637,20 @@
             wrapper2.style.display = hasResults2 ? 'block' : 'none';
         }
         if (page === 'admin') loadAdminData();
+        if (page === 'wallet' && window.__loadWallet) window.__loadWallet();
     }
 
     /* ============ LANGUAGE & THEME ============ */
     function applyLanguage(lang) {
         currentLang = lang;
         document.documentElement.lang = lang;
-        document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-        document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = t(el.dataset.i18n); });
+        document.documentElement.dir = 'ltr';
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+            var textNodes = [];
+            el.childNodes.forEach(function (n) { if (n.nodeType === 3) textNodes.push(n); });
+            if (textNodes.length) { textNodes[textNodes.length - 1].nodeValue = t(el.dataset.i18n); }
+            else { el.textContent = t(el.dataset.i18n); }
+        });
         var ph = document.querySelector('[data-i18n-ph]');
         if (ph && ph.tagName === 'TEXTAREA') ph.placeholder = t('placeholder');
         var langLabel = document.getElementById('langLabel');
@@ -591,7 +687,7 @@
                     document.querySelectorAll('.lang-btn').forEach(function (b) { b.classList.toggle('active', b.dataset.lang===lang); });
                     var html = document.documentElement;
                     html.lang = lang;
-                    html.dir = lang==='ar' ? 'rtl' : 'ltr';
+                    html.dir = 'ltr';
                 }
             });
         });
@@ -640,7 +736,7 @@
         function section(type, el){
             if(!el) return;
             var filtered = all.filter(function(k){ return k.type===type; });
-            if(!filtered.length){ el.innerHTML='<div style="color:#6b7280;padding:8px;font:12px Tajawal">لا يوجد مفاتيح</div>'; return; }
+            if(!filtered.length){ el.innerHTML='<div style="color:#6b7280;padding:8px;font:12px Cairo">لا يوجد مفاتيح</div>'; return; }
             el.innerHTML = filtered.map(function(k){
                 return '<div class="api-key-row"><span class="key">...'+escapeHtml(k.key.slice(-8))+'</span><span class="badge-green">فعال</span><span class="muted">'+escapeHtml(k.name)+' • '+new Date(k.created).toLocaleDateString('ar-EG')+'</span><button class="btn btn-ghost" onclick="deleteApiKey(\''+k.id+'\')"><i class="fas fa-trash"></i> إلغاء</button></div>';
             }).join('');
@@ -685,7 +781,7 @@
         var h = getHistory();
         if(!h.length){ el.innerHTML='<div style="padding:20px;text-align:center;color:#6b7280">لا يوجد سجل بعد — فحص الحسابات سيظهر هنا</div>'; updateOverview(); return; }
         el.innerHTML = h.map(function(e,i){
-            return '<div style="display:flex;gap:8px;align-items:center;padding:10px;border-bottom:1px solid #1f1f25;font:12px Tajawal;flex-wrap:wrap"><span class="muted">'+new Date(e.date).toLocaleString('ar-EG')+'</span><span>'+e.total+' حساب</span><span style="color:#4ade80">سليم '+e.alive+'</span><span style="color:#f87171">ميت '+e.dead+'</span><span class="badge-green">'+(e.status||'completed')+'</span><button class="btn btn-ghost view-btn" data-idx="'+i+'" style="margin-right:auto;padding:4px 8px;font-size:11px"><i class="fas fa-eye"></i> عرض</button></div>';
+            return '<div style="display:flex;gap:8px;align-items:center;padding:10px;border-bottom:1px solid #1f1f25;font:12px Cairo;flex-wrap:wrap"><span class="muted">'+new Date(e.date).toLocaleString('ar-EG')+'</span><span>'+e.total+' حساب</span><span style="color:#4ade80">سليم '+e.alive+'</span><span style="color:#f87171">ميت '+e.dead+'</span><span class="badge-green">'+(e.status||'completed')+'</span><button class="btn btn-ghost view-btn" data-idx="'+i+'" style="margin-right:auto;padding:4px 8px;font-size:11px"><i class="fas fa-eye"></i> عرض</button></div>';
         }).join('');
         // delegation
         el.querySelectorAll('.view-btn').forEach(function(btn){
@@ -706,7 +802,7 @@
         if(totalEl) totalEl.textContent=total;
         if(overHist){
             if(!h.length) overHist.innerHTML='<div style="color:#6b7280;text-align:center;padding:12px">لا يوجد فحص اليوم</div>';
-            else overHist.innerHTML=h.slice(0,5).map(function(e){ return '<div style="display:flex;gap:8px;padding:6px;border-bottom:1px solid #1f1f25;font:11px Tajawal"><span>'+new Date(e.date).toLocaleTimeString('ar-EG')+'</span><span>'+e.total+' حساب</span><span style="color:#4ade80">'+e.alive+' سليم</span></div>'; }).join('');
+            else overHist.innerHTML=h.slice(0,5).map(function(e){ return '<div style="display:flex;gap:8px;padding:6px;border-bottom:1px solid #1f1f25;font:11px Cairo"><span>'+new Date(e.date).toLocaleTimeString('ar-EG')+'</span><span>'+e.total+' حساب</span><span style="color:#4ade80">'+e.alive+' سليم</span></div>'; }).join('');
         }
     }
     // === سجل كل حساب لحاله ===
@@ -726,11 +822,11 @@
         var el=document.getElementById('accountHistoryList');
         if(!el) return;
         var h=getAccountHistory();
-        if(!h.length){ el.innerHTML='<div style="padding:20px;text-align:center;color:#6b7280;font:12px Tajawal">لا يوجد سجل حسابات بعد — كل حساب تفحصه بيظهر هنا لحاله</div>'; return; }
+        if(!h.length){ el.innerHTML='<div style="padding:20px;text-align:center;color:#6b7280;font:12px Cairo">لا يوجد سجل حسابات بعد — كل حساب تفحصه بيظهر هنا لحاله</div>'; return; }
         el.innerHTML=h.slice(0,100).map(function(e,i){
             var color=e.status==='alive'?'#22c55e':e.status==='banned'?'#ef4444':e.status==='dead'?'#6b7280':e.status==='facelock'?'#f97316':e.status==='captcha'?'#eab308':'#9ca3af';
             var label=e.status==='alive'?'سليم':e.status==='dead'?'ميت':e.status==='banned'?'محظور':e.status==='facelock'?'مقفل':e.status==='captcha'?'كابتشا':e.status;
-            return '<div style="display:flex;gap:8px;align-items:center;padding:8px;border-bottom:1px solid #1f1f25;font:11px JetBrains Mono;flex-wrap:wrap"><span style="background:'+color+';color:#fff;padding:2px 6px;border-radius:999px;font:700 10px Tajawal">'+label+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+e.username+'</span><span class="muted" style="font:400 10px Tajawal">'+new Date(e.date).toLocaleTimeString('ar-EG')+'</span><button class="btn btn-ghost view-acc-btn" data-idx="'+i+'" style="padding:4px 6px;font-size:10px"><i class="fas fa-eye"></i> عرض</button></div>';
+            return '<div style="display:flex;gap:8px;align-items:center;padding:8px;border-bottom:1px solid #1f1f25;font:11px JetBrains Mono;flex-wrap:wrap"><span style="background:'+color+';color:#fff;padding:2px 6px;border-radius:999px;font:700 10px Cairo">'+label+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+e.username+'</span><span class="muted" style="font:400 10px Cairo">'+new Date(e.date).toLocaleTimeString('ar-EG')+'</span><button class="btn btn-ghost view-acc-btn" data-idx="'+i+'" style="padding:4px 6px;font-size:10px"><i class="fas fa-eye"></i> عرض</button></div>';
         }).join('');
         el.querySelectorAll('.view-acc-btn').forEach(function(btn){
             btn.addEventListener('click', function(){ viewAccountHistory(parseInt(btn.dataset.idx,10)); });
@@ -806,6 +902,9 @@
             var sb = document.getElementById('startBtn');
             if (loginReq) loginReq.style.display = isAuthenticated ? 'none' : 'block';
             if (sb) sb.disabled = !isAuthenticated;
+            var capLogin = document.getElementById('captchaLoginRequired');
+            if (capLogin) capLogin.style.display = isAuthenticated ? 'none' : 'block';
+            if (isAuthenticated && window.__loadWallet) window.__loadWallet();
         } catch (e) { console.warn('auth fetch failed', e); }
     }
 
@@ -827,18 +926,28 @@
                 var el;
                 el=document.getElementById('cfgWh'); if(el && cfg.DISCORD_WEBHOOK_URL) el.placeholder = cfg.DISCORD_WEBHOOK_URL.slice(0,40)+'...';
                 el=document.getElementById('cfgAdmins'); if(el) el.value = (cfg.ADMIN_IDS||[]).join(', ');
+                el=document.getElementById('cfgIban'); if(el && cfg.RECEIVE_IBAN) el.value = cfg.RECEIVE_IBAN;
+                el=document.getElementById('cfgName'); if(el && cfg.RECEIVE_NAME) el.value = cfg.RECEIVE_NAME;
+                el=document.getElementById('cfgCost'); if(el && cfg.CAPTCHA_COST != null) el.value = cfg.CAPTCHA_COST;
+                el=document.getElementById('cfgBrag'); if(el && cfg.RECEIVE_BRAG_NUMBER) el.value = cfg.RECEIVE_BRAG_NUMBER;
             }
         }catch(e){}
+        loadPendingRecharges(); loadAdminUsers();
     }
     async function saveAdminConfig(){
         var payload = {};
         var v;
         v=document.getElementById('cfgZp'); if(v && v.value.trim()) payload.ZEROPOINT_API_KEY=v.value.trim();
-        v=document.getElementById('cfgZs'); if(v && v.value.trim()) payload.ZEROSOLVER_API_KEY=v.value.trim();
+        v=document.getElementById('cfgZs'); if(v && v.value.trim()) payload.ZAPZONEX_API_KEY=v.value.trim();
+        v=document.getElementById('cfgPlace'); if(v && v.value.trim()) payload.ZAPZONEX_PLACE_ID=v.value.trim();
         v=document.getElementById('cfgWh'); if(v && v.value.trim()) payload.DISCORD_WEBHOOK_URL=v.value.trim();
         v=document.getElementById('cfgCs'); if(v && v.value.trim()) payload.DISCORD_CLIENT_SECRET=v.value.trim();
         v=document.getElementById('cfgBot'); if(v && v.value.trim()) payload.BOT_TOKEN=v.value.trim();
         v=document.getElementById('cfgAdmins'); if(v) payload.ADMIN_IDS=v.value.trim();
+        v=document.getElementById('cfgIban'); if(v && v.value.trim()) payload.RECEIVE_IBAN=v.value.trim();
+        v=document.getElementById('cfgName'); if(v && v.value.trim()) payload.RECEIVE_NAME=v.value.trim();
+        v=document.getElementById('cfgCost'); if(v && v.value.trim()!=='') payload.CAPTCHA_COST=v.value.trim();
+        v=document.getElementById('cfgBrag'); if(v && v.value.trim()) payload.RECEIVE_BRAG_NUMBER=v.value.trim();
         try{
             var res=await fetch('/api/admin/config',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify(payload)});
             var data=await res.json();
@@ -847,6 +956,63 @@
             loadAdminData();
         }catch(e){ addLog('خطأ حفظ: '+e.message,'error'); }
     }
+
+    async function loadPendingRecharges(){
+        var box = document.getElementById('pendingRecharges');
+        if (!box) return;
+        try{
+            var res = await fetch('/api/admin/recharges', { credentials:'include' });
+            var list = await res.json();
+            if (!Array.isArray(list) || !list.length) { box.innerHTML = '<span class="muted">لا يوجد طلبات</span>'; return; }
+            box.innerHTML = list.map(function(r){
+                var stClass = r.status==='approved'?'ok':r.status==='rejected'?'no':'wait';
+                var stText = r.status==='approved'?'مقبول':r.status==='rejected'?'مرفوض':'بانتظار';
+                var receiptBtn = r.hasReceipt ? '<a href="/api/recharge/'+r.id+'/receipt" target="_blank" class="btn btn-ghost btn-sm">الإيصال</a>' : '';
+                var actions = r.status==='pending' ? '<button class="btn btn-purple btn-sm rch-approve" data-id="'+r.id+'">موافقة</button> <button class="btn btn-ghost btn-sm rch-reject" data-id="'+r.id+'">رفض</button>' : '';
+                return '<div class="rc-card">'+
+                    '<div class="rc-info"><div class="rc-user">'+r.username+'</div><div class="rc-meta">'+r.amount+' • '+(r.method||'')+' • <span class="pill-status '+stClass+'">'+stText+'</span></div></div>'+
+                    '<div class="rc-actions">'+receiptBtn+actions+'</div>'+
+                '</div>';
+            }).join('');
+        }catch(e){ box.innerHTML = '<span class="muted">خطأ في التحميل</span>'; }
+    }
+    async function loadAdminUsers(){
+        var box = document.getElementById('adminUsers');
+        if (!box) return;
+        try{
+            var res = await fetch('/api/admin/users', { credentials:'include' });
+            var list = await res.json();
+            if (!Array.isArray(list) || !list.length) { box.innerHTML = '<span class="muted">لا يوجد مستخدمين</span>'; return; }
+            box.innerHTML = list.map(function(u){
+                var av = u.avatar ? '<img src="'+u.avatar+'" class="usr-avatar">' : '<i class="fas fa-user usr-avatar"></i>';
+                var bannedClass = u.banned ? 'no' : 'ok';
+                var bannedText = u.banned ? 'محظور' : 'نشط';
+                var banBtn = u.banned ? '<button class="btn btn-ghost btn-sm usr-unban" data-id="'+u.id+'">فك الحظر</button>' : '<button class="btn btn-ghost btn-sm usr-ban" data-id="'+u.id+'">حظر</button>';
+                return '<div class="usr-card">'+
+                    '<div class="usr-id">'+av+'<div class="usr-meta"><b>'+(u.global_name||u.username)+'</b><span class="muted usr-sub">@'+(u.username||'')+' • '+u.id+'</span></div></div>'+
+                    '<div class="usr-actions"><span class="usr-balance">رصيد: '+(u.balance||0)+'</span> <span class="pill-status '+bannedClass+'">'+bannedText+'</span> '+banBtn+' <button class="btn btn-purple btn-sm usr-add" data-id="'+u.id+'">إضافة رصيد</button></div>'+
+                '</div>';
+            }).join('');
+        }catch(e){ box.innerHTML = '<span class="muted">خطأ في التحميل</span>'; }
+    }
+    document.addEventListener('click', function(e){
+        var t = e.target && e.target.closest ? e.target.closest('button') : null;
+        if (!t) return;
+        if (t.classList.contains('rch-approve') || t.classList.contains('rch-reject')) {
+            var id = t.dataset.id; var approve = t.classList.contains('rch-approve');
+            t.disabled = true;
+            fetch('/api/admin/recharge/'+id+'/'+(approve?'approve':'reject'), { method:'POST', credentials:'include' }).then(function(r){ return r.json(); }).then(function(){ loadPendingRecharges(); if (window.__loadWallet) window.__loadWallet(); }).catch(function(){});
+        } else if (t.classList.contains('usr-ban')) {
+            var uid = t.dataset.id; t.disabled = true;
+            fetch('/api/admin/users/'+uid+'/ban', { method:'POST', credentials:'include' }).then(function(){ loadAdminUsers(); }).catch(function(){});
+        } else if (t.classList.contains('usr-unban')) {
+            var uid2 = t.dataset.id; t.disabled = true;
+            fetch('/api/admin/users/'+uid2+'/unban', { method:'POST', credentials:'include' }).then(function(){ loadAdminUsers(); }).catch(function(){});
+        } else if (t.classList.contains('usr-add')) {
+            var uid3 = t.dataset.id; var amt = prompt('كم رصيد تبي تضيف؟');
+            if (amt) { fetch('/api/admin/users/'+uid3+'/add-balance', { method:'POST', headers:{'Content-Type':'application/json'}, credentials:'include', body: JSON.stringify({ amount: parseFloat(amt) }) }).then(function(){ loadAdminUsers(); if (window.__loadWallet) window.__loadWallet(); }).catch(function(){}); }
+        }
+    });
 
     /* ============ EVENTS ============ */
     function bindEvents() {
@@ -893,7 +1059,31 @@
                 // اهتزازة بصرية
                 card.style.transform = 'scale(0.97)';
                 setTimeout(function(){ card.style.transform = ''; }, 180);
+                setResultFilter(status);
             });
+        });
+
+        // فلاتر النتائج + البحث
+        document.querySelectorAll('.filter-pill').forEach(function (pill) {
+            pill.addEventListener('click', function () {
+                document.querySelectorAll('.filter-pill').forEach(function (x) { x.classList.remove('active'); });
+                pill.classList.add('active');
+                currentResultFilter = pill.dataset.filter;
+                applyResultFilter();
+            });
+        });
+        var resultSearchEl = document.getElementById('resultSearch');
+        if (resultSearchEl) resultSearchEl.addEventListener('input', function () { currentResultSearch = resultSearchEl.value.trim(); applyResultFilter(); });
+        // نسخ صف مفردة
+        document.addEventListener('click', function (e) {
+            var c = e.target.closest ? e.target.closest('.copy-row') : null;
+            if (c && c.dataset.username) {
+                var txt = c.dataset.username;
+                var done = false;
+                try { if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(txt); done = true; } } catch (_) {}
+                if (!done) done = fallbackCopy(txt);
+                addLog(done ? fmt(tm('copied'), { n: 1, s: txt }) : tm('copyFail'), done ? 'success' : 'warning');
+            }
         });
 
         // formatter events
@@ -903,18 +1093,53 @@
                 label.classList.add('active');
                 var radio = label.querySelector('input[type=radio]');
                 if (radio) radio.checked = true;
+                formatterConvert();
             });
         });
         document.querySelectorAll('.sep-btn').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 document.querySelectorAll('.sep-btn').forEach(function (b) { b.classList.remove('active'); });
                 btn.classList.add('active');
+                var custom = document.getElementById('fmtSepCustom');
+                if (custom) custom.value = '';
+                formatterConvert();
             });
         });
         var fmtConvertBtn = document.getElementById('fmtConvert');
         var fmtOutputEl = document.getElementById('fmtOutput');
         var fmtInputEl = document.getElementById('fmtInput');
         if (fmtConvertBtn) fmtConvertBtn.addEventListener('click', formatterConvert);
+        if (fmtInputEl) {
+            var fmtDebounce;
+            fmtInputEl.addEventListener('input', function () { clearTimeout(fmtDebounce); fmtDebounce = setTimeout(formatterConvert, 250); });
+            var fmtDrop = fmtInputEl.closest('.fmt-drop');
+            if (fmtDrop) {
+                ['dragenter', 'dragover'].forEach(function (ev) { fmtDrop.addEventListener(ev, function (e) { e.preventDefault(); fmtDrop.classList.add('dragover'); }); });
+                ['dragleave', 'drop'].forEach(function (ev) { fmtDrop.addEventListener(ev, function (e) { e.preventDefault(); fmtDrop.classList.remove('dragover'); }); });
+                fmtDrop.addEventListener('drop', function (e) {
+                    var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+                    if (f) { var rd = new FileReader(); rd.onload = function () { fmtInputEl.value = rd.result; formatterConvert(); }; rd.readAsText(f); }
+                });
+            }
+        }
+        var fmtCustomSep = document.getElementById('fmtSepCustom');
+        if (fmtCustomSep) fmtCustomSep.addEventListener('input', function () {
+            document.querySelectorAll('.sep-btn').forEach(function (b) { b.classList.remove('active'); });
+            formatterConvert();
+        });
+        var fmtFileInput = document.getElementById('fmtFile');
+        var fmtFileBtn = document.getElementById('fmtFileBtn');
+        if (fmtFileBtn && fmtFileInput) fmtFileBtn.addEventListener('click', function () { fmtFileInput.click(); });
+        if (fmtFileInput) fmtFileInput.addEventListener('change', function (e) {
+            var f = e.target.files && e.target.files[0]; if (!f) return;
+            var rd = new FileReader(); rd.onload = function () { if (fmtInputEl) fmtInputEl.value = rd.result; formatterConvert(); }; rd.readAsText(f);
+        });
+        var fmtPasteBtn = document.getElementById('fmtPaste');
+        if (fmtPasteBtn && fmtInputEl) fmtPasteBtn.addEventListener('click', function () {
+            if (navigator.clipboard && navigator.clipboard.readText) {
+                navigator.clipboard.readText().then(function (txt) { fmtInputEl.value = txt; formatterConvert(); }).catch(function () {});
+            }
+        });
         var fmtCopyBtn = document.getElementById('fmtCopy');
         if (fmtCopyBtn) fmtCopyBtn.addEventListener('click', function () {
             if (!fmtOutputEl || !fmtOutputEl.value.trim()) { addLog(tm('noFormat'), 'warning'); return; }
@@ -929,7 +1154,10 @@
             if (fmtInputEl) fmtInputEl.value = '';
             if (fmtOutputEl) fmtOutputEl.value = '';
             var statsEl = document.getElementById('fmtStats');
-            if (statsEl) statsEl.textContent = '0 lines';
+            if (statsEl) statsEl.textContent = currentLang === 'ar' ? '0 سطر' : '0 lines';
+            var inC = document.getElementById('fmtInCount'); if (inC) inC.textContent = '0';
+            var outC = document.getElementById('fmtOutCount'); if (outC) outC.textContent = '0';
+            var det = document.getElementById('fmtDetected'); if (det) det.textContent = t('fmtDetectHint');
         });
         var fmtSwapBtn = document.getElementById('fmtSwap');
         if (fmtSwapBtn) fmtSwapBtn.addEventListener('click', function () {
@@ -937,6 +1165,7 @@
             var tmp = fmtInputEl.value;
             fmtInputEl.value = fmtOutputEl.value;
             fmtOutputEl.value = tmp;
+            formatterConvert();
         });
         var fmtUseBtn = document.getElementById('fmtUseInChecker');
         if (fmtUseBtn) fmtUseBtn.addEventListener('click', function () {
@@ -944,6 +1173,15 @@
             if (accountInput) accountInput.value = fmtOutputEl.value;
             showPage('checker');
             addLog(fmt(tm('formatted'), { n: fmtOutputEl.value.split('\n').filter(Boolean).length }), 'success');
+        });
+        var fmtDownloadBtn = document.getElementById('fmtDownloadBtn');
+        if (fmtDownloadBtn) fmtDownloadBtn.addEventListener('click', function () {
+            if (!fmtOutputEl || !fmtOutputEl.value.trim()) { addLog(tm('noFormat'), 'warning'); return; }
+            var blob = new Blob([fmtOutputEl.value], { type: 'text/plain' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a'); a.href = url; a.download = 'accounts.txt';
+            document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+            addLog(tm('downloaded'), 'success');
         });
 
         var startBtn = document.getElementById('startBtn');
@@ -954,6 +1192,18 @@
 
         if (startBtn) startBtn.addEventListener('click', startCheck);
         if (clearBtn) clearBtn.addEventListener('click', clearAll);
+        var copyAllResultsBtn = document.getElementById('copyAllResults');
+        if (copyAllResultsBtn) copyAllResultsBtn.addEventListener('click', function () {
+            if (!resultsBody) return;
+            var rows = Array.from(resultsBody.querySelectorAll('tr[data-status]')).map(function (r) { return r.dataset.username || ''; }).filter(Boolean);
+            if (!rows.length) { addLog(tm('noResults'), 'warning'); return; }
+            var text = rows.join('\n'); var copied = false;
+            try { if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text); copied = true; } } catch (e) {}
+            if (!copied) copied = fallbackCopy(text);
+            addLog(copied ? fmt(tm('copied'), { n: rows.length, s: '' }) : tm('copyFail'), copied ? 'success' : 'warning');
+        });
+        var downloadResultsBtn = document.getElementById('downloadResults');
+        if (downloadResultsBtn) downloadResultsBtn.addEventListener('click', downloadResults);
         if (summaryBtn) summaryBtn.addEventListener('click', downloadResults);
         if (formatBtn) formatBtn.addEventListener('click', function () { applyFormatter('user_pass_cookie'); });
         if (cookiesBtn) cookiesBtn.addEventListener('click', function () { applyFormatter('cookie_only'); });
@@ -1143,11 +1393,11 @@
             var sCount = document.getElementById('solvedCount');
             var fCount = document.getElementById('failedCount');
             if(sEl){
-                if(!solved.length) sEl.innerHTML='<div style="text-align:center;color:#6b7280;padding:16px;font:400 11px Tajawal">لا يوجد بعد</div>';
+                if(!solved.length) sEl.innerHTML='<div style="text-align:center;color:#6b7280;padding:16px;font:400 11px Cairo">لا يوجد بعد</div>';
                 else sEl.innerHTML = solved.map(function(u,i){ return '<div style="display:flex;gap:8px;align-items:center;padding:7px 8px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.18);border-radius:6px;font:11px JetBrains Mono"><span style="color:#4ade80">'+(i+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis">'+escapeHtml(u)+'</span><i class="fas fa-check" style="color:#4ade80"></i></div>'; }).join('');
             }
             if(fEl){
-                if(!failed.length) fEl.innerHTML='<div style="text-align:center;color:#6b7280;padding:16px;font:400 11px Tajawal">لا يوجد بعد</div>';
+                if(!failed.length) fEl.innerHTML='<div style="text-align:center;color:#6b7280;padding:16px;font:400 11px Cairo">لا يوجد بعد</div>';
                 else fEl.innerHTML = failed.map(function(u,i){ return '<div style="display:flex;gap:8px;align-items:center;padding:7px 8px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.18);border-radius:6px;font:11px JetBrains Mono"><span style="color:#f87171">'+(i+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis">'+escapeHtml(u)+'</span><i class="fas fa-xmark" style="color:#f87171"></i></div>'; }).join('');
             }
             if(sCount) sCount.textContent = solved.length;
@@ -1290,4 +1540,278 @@
     window.filterAccounts = filterAccounts;
     window.applyLanguage = applyLanguage;
     window.applyTheme = applyTheme;
+
+    // ===== Captcha Solver (MR Solver) =====
+    (function initCaptchaSolver() {
+        var input = document.getElementById('captchaInput');
+        var fileInput = document.getElementById('captchaFile');
+        var clearBtn = document.getElementById('captchaClear');
+        var countEl = document.getElementById('captchaCharCount');
+        var lineEl = document.getElementById('captchaLineCount');
+        var typeSel = document.getElementById('captchaType');
+        var solveBtn = document.getElementById('captchaSolveBtn');
+        var spinner = document.getElementById('captchaSpinner');
+        var logEl = document.getElementById('captchaLog');
+        var resultsCard = document.getElementById('captchaResults');
+        var solvedOut = document.getElementById('capSolvedOut');
+        var dlBtn = document.getElementById('captchaDownload');
+        var capSolved = document.getElementById('capSolved');
+        var capFailed = document.getElementById('capFailed');
+        var capFace = document.getElementById('capFace');
+        var capDead = document.getElementById('capDead');
+        var capProgressBar = document.getElementById('capProgressBar');
+        function setProgress(pct){ if (capProgressBar) capProgressBar.style.width = Math.max(0, Math.min(100, pct)) + '%'; }
+        var costPreviewEl = document.getElementById('captchaCostPreview');
+        var availEl = document.getElementById('csAvailable');
+        function updateAvailableBadge() {
+            if (!availEl) return;
+            fetch('/api/solver-available').then(function (r) { return r.json(); }).then(function (d) {
+                if (!d || typeof d.available !== 'number') return;
+                availEl.textContent = 'متوفر الان ' + d.available + ' حل لغز';
+            }).catch(function () {});
+        }
+        updateAvailableBadge();
+        setInterval(updateAvailableBadge, 30000);
+        var CAPTCHA_MIN = 30, CAPTCHA_BATCH_PRICE = 2.5;
+
+        function logMsg(msg) { if (logEl) logEl.innerHTML = '<i class="fas fa-terminal"></i> ' + msg; }
+        function solverErr(msg) {
+            msg = msg || '';
+            if (/temporarily unavailable|503|server_busy/i.test(msg)) return 'خدمة MR Solver غير متاحة حالياً، حاول بعد قليل';
+            if (/insufficient_balance/i.test(msg)) return 'رصيد MR Solver غير كافٍ لحل الكابتشا';
+            if (/invalid_solver_key|invalid api|missing api/i.test(msg)) return 'مفتاح MR Solver غير صحيح';
+            if (/invalid_cookies|missing_params/i.test(msg)) return 'الكوكي غير صالح أو ناقص — تأكد من صيغة user:pass:cookie';
+            if (/login|دخول/i.test(msg)) return 'سجّل دخولك بالديسكورد أولاً';
+            return msg || 'خطأ غير معروف';
+        }
+        function updateCounts() {
+            if (!input) return;
+            var lines = input.value.split('\n').map(function (l) { return l.trim(); }).filter(Boolean);
+            if (countEl) countEl.textContent = input.value.length;
+            if (lineEl) lineEl.textContent = lines.length + ' accounts';
+            if (costPreviewEl) {
+                var n = lines.length;
+                if (!n) { costPreviewEl.textContent = ''; costPreviewEl.className = 'cap-cost-preview'; }
+                else {
+                    var price = (n / CAPTCHA_MIN) * CAPTCHA_BATCH_PRICE;
+                    var enough = n >= CAPTCHA_MIN;
+                    costPreviewEl.className = 'cap-cost-preview' + (enough ? ' ok' : ' warn');
+                    costPreviewEl.innerHTML = 'العدد: <b>' + n + '</b> حساب — التكلفة التقديرية: <b>' + price.toFixed(2) + ' ريال</b>' + (enough ? '' : ' • <span>الحد الأدنى ' + CAPTCHA_MIN + ' حساب</span>');
+                }
+            }
+        }
+        if (input) {
+            input.addEventListener('input', updateCounts);
+            input.addEventListener('paste', function () { setTimeout(updateCounts, 50); });
+        }
+        if (fileInput && input) {
+            fileInput.addEventListener('change', function (e) {
+                var f = e.target.files && e.target.files[0]; if (!f) return;
+                var rd = new FileReader();
+                rd.onload = function () { input.value = rd.result; updateCounts(); };
+                rd.readAsText(f);
+            });
+        }
+        var dropZone = document.getElementById('captchaDropZone');
+        if (dropZone && input) {
+            ['dragenter','dragover'].forEach(function (ev) { dropZone.addEventListener(ev, function (e) { e.preventDefault(); dropZone.classList.add('drag'); }); });
+            ['dragleave','drop'].forEach(function (ev) { dropZone.addEventListener(ev, function (e) { e.preventDefault(); dropZone.classList.remove('drag'); }); });
+            dropZone.addEventListener('drop', function (e) {
+                var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; if (!f) return;
+                var rd = new FileReader();
+                rd.onload = function () { input.value = rd.result; updateCounts(); };
+                rd.readAsText(f);
+            });
+        }
+        if (clearBtn && input) {
+            clearBtn.addEventListener('click', function () {
+                input.value = ''; updateCounts();
+                if (resultsCard) resultsCard.style.display = 'none';
+                logMsg('تم المسح');
+            });
+        }
+        var capPollTimer = null;
+        var STATUS_LABELS = { pending:'بانتظار', processing:'قيد المعالجة', completed:'اكتمل', failed:'فشل', cancelled:'ملغى' };
+        var STATUS_COLORS = { pending:'#eab308', processing:'#3b82f6', completed:'#22c55e', failed:'#ef4444', cancelled:'#6b7280' };
+        function setCaptchaStatus(state){
+            var box = document.getElementById('captchaStatus');
+            if (!box) return;
+            var label = STATUS_LABELS[state] || state || '—';
+            var color = STATUS_COLORS[state] || '#9ca3af';
+            box.style.display = 'flex';
+            box.style.background = 'rgba(0,0,0,0.3)';
+            box.style.border = '1px solid ' + color;
+            box.innerHTML = '<span style="width:10px;height:10px;border-radius:50%;background:' + color + ';display:inline-block"></span> <span style="color:' + color + '">' + label + '</span>';
+        }
+        function hideCaptchaStatus(){
+            var box = document.getElementById('captchaStatus');
+            if (box) box.style.display = 'none';
+            if (capPollTimer) { clearInterval(capPollTimer); capPollTimer = null; }
+        }
+        function pollCaptchaStatus(jobId){
+            if (capPollTimer) clearInterval(capPollTimer);
+            capPollTimer = setInterval(function () {
+                fetch('/api/solver-status/' + jobId, { credentials:'include' }).then(function (r) { return r.json(); }).then(function (job) {
+                    if (job.status) setCaptchaStatus(job.status);
+                    if (job.status === 'pending') setProgress(0);
+                    else if (job.status === 'processing' && job.total) setProgress(Math.round((job.progress||0)/job.total*100));
+                    if (job.status === 'completed' || job.status === 'failed' || job.status === 'cancelled') {
+                        hideCaptchaStatus();
+                        if (spinner) spinner.style.display = 'none';
+                        solveBtn.disabled = false;
+                        if (job.status === 'completed') {
+                            updateAvailableBadge();
+                            if (capSolved) capSolved.textContent = job.successful || 0;
+                            if (capFailed) capFailed.textContent = job.failed || 0;
+                            if (capFace) capFace.textContent = job.alreadySolved || 0;
+                            if (capDead) capDead.textContent = 0;
+                            if (solvedOut) solvedOut.value = (job.results && job.results.solved) ? job.results.solved.join('\n') : '';
+                            if (resultsCard) resultsCard.style.display = 'block';
+                            setProgress(100);
+                            logMsg('Done: ' + (job.successful || 0) + ' solved, ' + (job.alreadySolved || 0) + ' already, ' + (job.failed || 0) + ' failed');
+                        } else if (job.status === 'failed') {
+                            logMsg('فشل الحل: ' + solverErr(job.error || 'خطأ'));
+                        } else {
+                            logMsg('تم إلغاء العملية');
+                        }
+                    }
+                }).catch(function () {});
+            }, 2000);
+        }
+        if (solveBtn) {
+            solveBtn.addEventListener('click', function () {
+                if (!input) return;
+                if (!isAuthenticated) {
+                    var lr = document.getElementById('captchaLoginRequired');
+                    if (lr) lr.style.display = 'block';
+                    logMsg('سجّل دخولك بالديسكورد أولاً');
+                    return;
+                }
+                var lines = input.value.split('\n').map(function (l) { return l.trim(); }).filter(Boolean);
+                if (lines.length < CAPTCHA_MIN) { logMsg('الحد الأدنى لحل الكابتشا ' + CAPTCHA_MIN + ' حساب (أدخلت ' + lines.length + ')'); return; }
+                solveBtn.disabled = true;
+                if (spinner) spinner.style.display = 'block';
+                setCaptchaStatus('pending');
+                logMsg('Sending ' + lines.length + ' account(s) to MR Solver...');
+                fetch('/api/solve-captcha', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ accounts: lines.map(function (l) { return { raw: l }; }), captchaType: typeSel ? typeSel.value : undefined })
+                }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, data: j }; }); })
+                    .then(function (res) {
+                        var d = res.data || {};
+                        if (!res.ok || d.status === 'error') {
+                            if (spinner) spinner.style.display = 'none';
+                            solveBtn.disabled = false;
+                            hideCaptchaStatus();
+                            logMsg('خطأ: ' + solverErr(d.message || d.error || 'غير معروف'));
+                            return;
+                        }
+                        pollCaptchaStatus(d.jobId);
+                    }).catch(function (e) {
+                        if (spinner) spinner.style.display = 'none';
+                        solveBtn.disabled = false;
+                        hideCaptchaStatus();
+                        logMsg('خطأ في الاتصال: ' + e.message);
+                    });
+            });
+        }
+        if (dlBtn && solvedOut) {
+            dlBtn.addEventListener('click', function () {
+                var txt = solvedOut.value;
+                if (!txt) { logMsg('لا توجد نتائج للتحميل'); return; }
+                var blob = new Blob([txt], { type: 'text/plain' });
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url; a.download = 'solved.txt';
+                document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        }
+        if (input) updateCounts();
+    })();
+
+    // ===== Wallet & Recharge =====
+    (function initWallet() {
+        var balanceEl = document.getElementById('walletBalance');
+        var costEl = document.getElementById('walletCost');
+        var openBtn = document.getElementById('openRecharge');
+        var form = document.getElementById('rechargeForm');
+        var amountEl = document.getElementById('rechargeAmount');
+        var methodEl = document.getElementById('rechargeMethod');
+        var nameEl = document.getElementById('receiveName');
+        var ibanEl = document.getElementById('receiveIban');
+        var bragEl = document.getElementById('receiveBrag');
+        var bragRowEl = document.getElementById('receiveBragRow');
+        var ibanRowEl = document.getElementById('receiveIbanRow');
+        var userCard = document.getElementById('userCard');
+        var userBalanceEl = document.getElementById('userBalance');
+        var receiptEl = document.getElementById('rechargeReceipt');
+        var submitBtn = document.getElementById('rechargeSubmit');
+        var msgEl = document.getElementById('rechargeMsg');
+        var historyEl = document.getElementById('rechargeHistory');
+
+        if (openBtn && form) openBtn.addEventListener('click', function () { form.style.display = form.style.display === 'none' ? 'block' : 'none'; });
+        function updateReceive(){
+            var m = methodEl ? methodEl.value : 'برق';
+            if (bragRowEl) bragRowEl.style.display = (m === 'برق') ? 'block' : 'none';
+            if (ibanRowEl) ibanRowEl.style.display = (m === 'الراجحي') ? 'block' : 'none';
+        }
+        if (methodEl) methodEl.addEventListener('change', updateReceive);
+        var walletIconBtn = document.getElementById('walletIconBtn');
+        if (walletIconBtn) walletIconBtn.addEventListener('click', function () { if (typeof showPage === 'function') showPage('wallet'); });
+        if (userCard) userCard.addEventListener('click', function (e) {
+            if (e.target.closest && e.target.closest('button')) return;
+            userCard.classList.remove('wallet-pulse');
+            void userCard.offsetWidth;
+            userCard.classList.add('wallet-pulse');
+            setTimeout(function () { userCard.classList.remove('wallet-pulse'); }, 420);
+            if (typeof showPage === 'function') showPage('wallet');
+        });
+
+        function loadWallet() {
+            fetch('/api/wallet', { credentials: 'include' }).then(function (r) { return r.json(); }).then(function (d) {
+                if (balanceEl) balanceEl.textContent = (d.balance != null ? d.balance : 0);
+                if (userBalanceEl) userBalanceEl.textContent = 'رصيد: ' + (d.balance != null ? d.balance : 0);
+                if (costEl) costEl.textContent = (d.captchaCost != null ? (Number(d.captchaCost) * 30).toFixed(2) + ' ريال لكل 30 حساب' : '—');
+                if (nameEl) nameEl.textContent = d.receiveName || '—';
+                if (ibanEl) ibanEl.textContent = d.receiveIban || '—';
+                if (bragEl) bragEl.textContent = d.receiveBrag || '—';
+                updateReceive();
+                if (historyEl) {
+                    if (d.recharges && d.recharges.length) {
+                        historyEl.innerHTML = d.recharges.map(function (r) {
+                            var st = r.status === 'approved' ? '<span style="color:#22c55e">مقبول</span>' : r.status === 'rejected' ? '<span style="color:#ef4444">مرفوض</span>' : '<span style="color:#eab308">بانتظار الموافقة</span>';
+                            return '<div style="display:flex;justify-content:space-between;border-bottom:1px solid #26262e;padding:6px 0;font:12px Cairo"><span>' + r.amount + ' — ' + (r.method || '') + '</span><span>' + st + '</span></div>';
+                        }).join('');
+                    } else { historyEl.textContent = 'لا يوجد'; }
+                }
+            }).catch(function () {});
+        }
+
+        if (submitBtn) {
+            submitBtn.addEventListener('click', function () {
+                var amount = parseFloat(amountEl && amountEl.value);
+                if (!amount || amount <= 0) { if (msgEl) msgEl.textContent = 'أدخل مبلغ صالح'; return; }
+                var file = receiptEl && receiptEl.files && receiptEl.files[0];
+                if (!file) { if (msgEl) msgEl.textContent = 'أرفق صورة الإيصال'; return; }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var body = JSON.stringify({ amount: amount, method: methodEl ? methodEl.value : '—', receipt: reader.result });
+                    submitBtn.disabled = true;
+                    if (msgEl) msgEl.textContent = 'جاري الإرسال...';
+                    fetch('/api/recharge', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'include', body: body })
+                        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, data: j }; }); })
+                        .then(function (res) {
+                            submitBtn.disabled = false;
+                            if (res.ok && res.data.status === 'pending') { if (msgEl) msgEl.textContent = '✅ تم إرسال الطلب، بانتظار الموافقة'; if (form) form.style.display = 'none'; loadWallet(); }
+                            else { if (msgEl) msgEl.textContent = 'خطأ: ' + (res.data.message || 'غير معروف'); }
+                        }).catch(function (e) { submitBtn.disabled = false; if (msgEl) msgEl.textContent = 'خطأ: ' + e.message; });
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        window.__loadWallet = loadWallet;
+    })();
 }());
