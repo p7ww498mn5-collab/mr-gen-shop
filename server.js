@@ -711,6 +711,17 @@ function startBot(){
     }
     client.on(Events.InteractionCreate, async (interaction) => {
       try {
+        if (interaction.isChatInputCommand()){
+          if (interaction.commandName === 'setup'){
+            if (!isAdminUser(interaction.user)){ await interaction.reply({ content:'❌ ليس لديك صلاحية لاستخدام هذا الأمر', ephemeral:true }); return; }
+            const tch = interaction.channel;
+            if (!tch || !(tch.isTextBased && tch.isTextBased())){ await interaction.reply({ content:'❌ استخدم الأمر داخل روم نصي', ephemeral:true }); return; }
+            await interaction.reply({ content:'⏳ جاري نشر رسالة حل الكابتشا...', ephemeral:true });
+            try { await postButtonMessage(tch); await interaction.editReply({ content:'✅ تم نشر الرسالة في هذا الروم' }); }
+            catch(e){ await interaction.editReply({ content:'❌ تعذر نشر الرسالة' }); }
+          }
+          return;
+        }
         if (interaction.isButton()){
           if (interaction.customId === 'btn_solve_captcha'){
             await interaction.showModal(buildSolveModal());
@@ -739,6 +750,11 @@ function startBot(){
     });
     client.on(Events.ClientReady, async (c) => {
       console.log('[BOT] دخل كـ', c.user.tag);
+      try {
+        const setupCmd = { name: 'setup', description: 'نشر رسالة حل الكابتشا (MR Solver)' };
+        c.guilds.cache.forEach((g) => { g.commands.set([setupCmd]).catch(()=>{}); });
+        console.log('[BOT] تم تسجيل امر /setup');
+      } catch(e){ console.error('[BOT] تعذر تسجيل الامر', e); }
       const channelId = process.env.BOT_CHANNEL_ID || '';
       if (channelId){
         const ch = c.channels.cache.get(channelId);
