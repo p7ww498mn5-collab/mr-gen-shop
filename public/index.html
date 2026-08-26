@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="dark">
+<html lang="ar" dir="ltr" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MR CHECKER — فاحص الكوكيز</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+  @keyframes walletPulse { 0%{transform:scale(1)} 50%{transform:scale(1.04); box-shadow:0 0 0 3px rgba(34,197,94,.55)} 100%{transform:scale(1)} }
+  .wallet-pulse { animation: walletPulse .4s ease; border-radius:12px; }
+</style>
 </head>
 <body>
 <div class="app">
@@ -16,31 +20,33 @@
       <button class="icon-btn" id="closeSidebar"><i class="fas fa-xmark"></i></button>
     </div>
     <nav class="side-nav">
-      <div class="nav-label">نظرة عامة</div>
-      <a class="nav-item" data-page="overview"><i class="fas fa-house"></i> نظرة عامة</a>
-      <a class="nav-item" data-page="accounts"><i class="fas fa-users"></i> الحسابات</a>
-      <a class="nav-item active" data-page="cookie-checker"><i class="fas fa-cookie-bite"></i> فاحص الكوكيز</a>
-      <a class="nav-item" data-page="formatter"><i class="fas fa-sliders"></i> المنسق</a>
+      <div class="nav-label" data-i18n="navLabel">نظرة عامة</div>
+      <a class="nav-item" data-page="overview" data-i18n="navOverview"><i class="fas fa-house"></i> نظرة عامة</a>
+      <a class="nav-item" data-page="accounts" data-i18n="navAccounts"><i class="fas fa-users"></i> الحسابات</a>
+      <a class="nav-item active" data-page="cookie-checker" data-i18n="navChecker"><i class="fas fa-cookie-bite"></i> فاحص الكوكيز</a>
+      <a class="nav-item" data-page="captcha-solver" data-i18n="navCaptcha"><svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;color:#eab308"><path d="M12 2 4 5v6.5C4 16 7.3 20.2 12 22c4.7-1.8 8-6 8-10.5V5l-8-3z"/><path d="M9 12l2 2 4-4" fill="none" stroke="#0a0a0e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> حل كابتشا</a>
+      <a class="nav-item" data-page="formatter" data-i18n="navFormatter"><i class="fas fa-sliders"></i> المنسق</a>
 
-      <a class="nav-item" data-page="history"><i class="fas fa-clock-rotate-left"></i> السجل</a>
-      <a class="nav-item admin-only" id="adminNavItem" data-page="admin" style="display:none"><i class="fas fa-crown" style="color:#f59e0b"></i> الادمن <span class="admin-tag">لك فقط</span></a>
+      <a class="nav-item" data-page="history" data-i18n="navHistory"><i class="fas fa-clock-rotate-left"></i> السجل</a>
+      <a class="nav-item admin-only" id="adminNavItem" data-page="admin" style="display:none" data-i18n="navAdmin"><i class="fas fa-crown" style="color:#f59e0b"></i> الادمن <span class="admin-tag">لك فقط</span></a>
     </nav>
-    <div class="sidebar-foot">
-      <a href="#" class="foot-link"><i class="fas fa-circle" style="color:#22c55e;font-size:8px"></i> MR market</a>
+    <div class="sidebar-foot" style="background:rgba(0,0,0,0.28);border-top:1px solid #26262e;padding:12px 14px;margin-top:auto">
+      <a href="#" class="foot-link" data-i18n="footMarket"><i class="fas fa-circle" style="color:#22c55e;font-size:8px"></i> MR market</a>
       <div class="theme-switch">
-        <button class="theme-btn" data-theme="light"><i class="fas fa-sun"></i> فاتح</button>
-        <button class="theme-btn active" data-theme="dark"><i class="fas fa-moon"></i> داكن</button>
+        <button class="theme-btn" data-theme="light" data-i18n="themeLight"><i class="fas fa-sun"></i> فاتح</button>
+        <button class="theme-btn active" data-theme="dark" data-i18n="themeDark"><i class="fas fa-moon"></i> داكن</button>
       </div>
       <div class="lang-switch">
         <button class="lang-btn" data-lang="en">EN <span>🇬🇧</span></button>
         <button class="lang-btn active" data-lang="ar">عربي <span>🇸🇦</span></button>
       </div>
       <!-- تسجيل دخول للجميع -->
-      <div id="authSection"><a href="/auth/discord" class="btn-discord"><i class="fab fa-discord"></i> تسجيل دخول بالديسكورد</a><p style="text-align:center;color:#6b7280;font:10px Tajawal;margin-top:4px">سجل دخولك عشان تقدر تفحص</p></div>
+      <div id="authSection"><a href="/auth/discord" class="btn-discord" data-i18n="loginDiscord"><i class="fab fa-discord"></i> تسجيل دخول بالديسكورد</a><p style="text-align:center;color:#6b7280;font:10px Cairo;margin-top:4px" data-i18n="loginHint">سجل دخولك عشان تقدر تفحص</p></div>
       <div id="userSection" style="display:none">
-        <div class="user-card">
+        <div class="user-card" id="userCard" style="cursor:pointer">
           <img id="userAvatar" src="" alt="">
-          <div><div id="userName" class="user-name"></div><div id="userId" class="user-sub"></div></div>
+          <div><div id="userName" class="user-name"></div><div id="userId" class="user-sub"></div><div id="userBalance" class="user-sub" style="color:#22c55e">رصيد: —</div></div>
+          <button id="walletIconBtn" class="icon-btn" title="المحفظة" style="color:#22c55e"><svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M3 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H5a2 2 0 0 0-2 2z"/><path d="M3 9h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="16.5" cy="14" r="1.3" fill="#0a0a0e"/></svg></button>
           <button id="logoutBtn" class="icon-btn"><i class="fas fa-right-from-bracket"></i></button>
         </div>
         <div id="adminBadge" style="display:none" class="admin-badge">👑 ADMIN — ظاهرة لك فقط</div>
@@ -52,69 +58,207 @@
   <main class="main">
     <header class="topbar">
       <button class="icon-btn" id="openSidebar"><i class="fas fa-bars"></i></button>
-      <div class="topbar-title" id="topbarTitle">فاحص الكوكيز</div>
-      <div class="topbar-actions"><span class="pill">يدعم 100 حساب دفعة واحدة</span></div>
+      <div class="topbar-title" id="topbarTitle" data-i18n="topbarTitle">فاحص الكوكيز</div>
+      <div class="topbar-actions"><span class="pill" data-i18n="topbarPill">يدعم 100 حساب دفعة واحدة</span></div>
     </header>
 
     <!-- COOKIE CHECKER - هو الي يفحص الحسابات -->
     <section class="page active" id="page-cookie-checker">
-      <div class="page-head">
-        <h1>فاحص الكوكيز</h1>
-        <p class="muted">الصق حتى <b>100</b> حساب بصيغة <code>user:pass:cookie</code> أو <code>user:pass</code> واضغط فحص. الكلمة المتحركة <span class="checking-animated"><i class="fas fa-spinner"></i> Checking...</span> تظهر أثناء الفحص.</p>
+                  <div class="page-head">
+        <h1 data-i18n="checkerTitle">فاحص الكوكيز</h1>
+        <p class="muted"><span data-i18n="checkerSub">الصق حتى 100 حساب بصيغة user:pass:cookie أو user:pass واضغط فحص. الكلمة المتحركة</span> <span class="checking-animated"><i class="fas fa-spinner"></i> Checking...</span> <span data-i18n="checkerSubEnd">تظهر أثناء الفحص.</span></p>
       </div>
-      <div id="loginRequired" style="display:none;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.3);border-radius:8px;padding:16px;text-align:center;margin-bottom:12px">
-        <p style="color:#bae6fd;font:600 13px Tajawal">يجب تسجيل الدخول بالديسكورد أولاً للفحص</p>
-        <a href="/auth/discord" class="btn btn-purple" style="margin-top:8px"><i class="fab fa-discord"></i> تسجيل دخول</a>
+      <div id="loginRequired" class="notice-card" style="display:none"> style="display:none">
+        <p data-i18n="loginReqTitle">يجب تسجيل الدخول بالديسكورد أولاً للفحص</p>
+        <a href="/auth/discord" class="btn btn-purple" data-i18n="loginReqBtn"><i class="fab fa-discord"></i> تسجيل دخول</a>
       </div>
-      <div class="card">
+      <div class="card chk-card">
+        <div class="chk-card-head">
+          <div class="chk-card-title"><i class="fas fa-key"></i> <span data-i18n="checkerInputTitle">الحسابات</span></div>
+          <span class="chk-badge" id="lineCount">0 lines</span>
+        </div>
         <div class="textarea-wrap" id="dropZone">
           <textarea id="accountInput" spellcheck="false" placeholder="user1:pass123:_|WARNING:-DO-NOT-SHARE-THIS...&#10;user2:pass456:cookie_here&#10;user3:pass789"></textarea>
           <input type="file" id="fileInput" accept=".txt" hidden>
+          <div class="drop-hint"><i class="fas fa-file-arrow-up"></i> <span data-i18n="dropHint">اسحب ملف .txt هنا</span></div>
         </div>
         <div class="card-foot">
           <span class="count" id="charCount">0</span>
-          <span class="muted" id="lineCount">0 lines</span>
-          <div style="display:flex;gap:8px;margin-right:auto">
-            <button class="btn btn-ghost" id="clearBtn" title="مسح الحسابات من فاحص الكوكيز وقائمة وضع الحسابات"><i class="fas fa-eraser"></i> مسح الحسابات</button>
-            <label class="btn btn-purple" for="fileInput"><i class="fas fa-upload"></i> رفع ملف .txt</label>
-            <button class="btn btn-ghost" id="pasteClipboard"><i class="far fa-clipboard"></i> لصق</button>
+          <div class="chk-tools">
+            <button class="btn btn-ghost btn-sm" id="clearBtn" data-i18n="clearAcc"><i class="fas fa-eraser"></i> <span data-i18n="clearAcc">مسح الحسابات</span></button>
+            <label class="btn btn-purple btn-sm" for="fileInput" data-i18n="uploadTxt"><i class="fas fa-upload"></i> <span data-i18n="uploadTxt">رفع ملف .txt</span></label>
+            <button class="btn btn-ghost btn-sm" id="pasteClipboard" data-i18n="pasteBtn"><i class="far fa-clipboard"></i> <span data-i18n="pasteBtn">لصق</span></button>
           </div>
         </div>
-        
       </div>
       <div class="stats-grid" style="margin-top:12px">
-        <div class="stat-card s-total" data-page="checker"><div class="stat-head"><span class="stat-count" id="statAccount" style="color:#9ca3af">0</span><span class="stat-label">الإجمالي</span></div></div>
-        <div class="stat-card clickable s-alive" data-page="alive"><div class="stat-head"><span class="stat-count" id="aliveCount" style="color:#22c55e">0</span><span class="stat-label" style="color:#22c55e">سليم</span></div></div>
-        <div class="stat-card clickable s-dead" data-page="dead"><div class="stat-head"><span class="stat-count" id="deadCount" style="color:#6b7280">0</span><span class="stat-label" style="color:#6b7280">ميت</span></div></div>
-        <div class="stat-card clickable s-banned" data-page="banned"><div class="stat-head"><span class="stat-count" id="bannedCount" style="color:#ef4444">0</span><span class="stat-label" style="color:#ef4444">محظور</span></div></div>
-        <div class="stat-card clickable s-facelock" data-page="facelock"><div class="stat-head"><span class="stat-count" id="facelockCount" style="color:#f97316">0</span><span class="stat-label" style="color:#f97316">مقفل</span></div></div>
-        <div class="stat-card clickable s-captcha" data-page="captcha"><div class="stat-head"><span class="stat-count" id="captchaCount" style="color:#eab308">0</span><span class="stat-label" style="color:#eab308">كابتشا</span></div></div>
+        <div class="stat-card s-total" data-page="checker"><i class="stat-ico fas fa-layer-group" style="color:#9ca3af"></i><div class="stat-head"><span class="stat-count" id="statAccount" style="color:#9ca3af">0</span><span class="stat-label" data-i18n="statTotal">الإجمالي</span></div></div>
+        <div class="stat-card clickable s-alive" data-page="alive"><i class="stat-ico fas fa-circle-check" style="color:#22c55e"></i><div class="stat-head"><span class="stat-count" id="aliveCount" style="color:#22c55e">0</span><span class="stat-label" style="color:#22c55e" data-i18n="statAlive">سليم</span></div></div>
+        <div class="stat-card clickable s-dead" data-page="dead"><i class="stat-ico fas fa-circle-xmark" style="color:#6b7280"></i><div class="stat-head"><span class="stat-count" id="deadCount" style="color:#6b7280">0</span><span class="stat-label" style="color:#6b7280" data-i18n="statDead">ميت</span></div></div>
+        <div class="stat-card clickable s-banned" data-page="banned"><i class="stat-ico fas fa-ban" style="color:#ef4444"></i><div class="stat-head"><span class="stat-count" id="bannedCount" style="color:#ef4444">0</span><span class="stat-label" style="color:#ef4444" data-i18n="statBanned">محظور</span></div></div>
+        <div class="stat-card clickable s-facelock" data-page="facelock"><i class="stat-ico fas fa-lock" style="color:#f97316"></i><div class="stat-head"><span class="stat-count" id="facelockCount" style="color:#f97316">0</span><span class="stat-label" style="color:#f97316" data-i18n="statFacelock">مقفل</span></div></div>
+        <div class="stat-card clickable s-captcha" data-page="captcha"><i class="stat-ico fas fa-robot" style="color:#eab308"></i><div class="stat-head"><span class="stat-count" id="captchaCount" style="color:#eab308">0</span><span class="stat-label" style="color:#eab308" data-i18n="statCaptcha">كابتشا</span></div></div>
       </div>
       <!-- hidden compat -->
       <div style="display:none">
         <span id="totalAccounts">0</span><span id="sidebarTotal">0</span><span id="aliveCount2">0</span><span id="aliveBadge">0</span><span id="deadCount2">0</span><span id="deadBadge">0</span><span id="bannedCount2">0</span><span id="bannedBadge">0</span><span id="facelockCount2">0</span><span id="facelockBadge">0</span><span id="captchaCount2">0</span><span id="captchaBadge">0</span><span id="notxzinCount">0</span><span id="notxzinBadge">0</span><span id="invalidCount">0</span><span id="invalidBadge">0</span><span id="lastUpdate">Now</span>
       </div>
-      <button id="startBtn" class="btn btn-purple" style="width:100%;margin-top:12px;padding:14px;font-size:15px"><i class="fas fa-bolt"></i> فحص الحسابات</button>
-      <div id="checkingIndicator" style="display:none;text-align:center;margin-top:10px;color:#0ea5e9;font:700 13px Tajawal"><i class="fas fa-spinner checking-spinner"></i> Checking... <span class="checking-dots"></span></div>
-      <div class="table-wrapper" id="resultsWrapper" style="margin-top:16px;display:none"><table><thead><tr><th>#</th><th>USERNAME</th><th>STATUS</th></tr></thead><tbody id="resultsBody"></tbody></table></div>
-      <div class="log-area" id="logArea" style="margin-top:10px"><i class="fas fa-terminal"></i> جاهز للفحص...</div>
+      <button id="startBtn" class="btn btn-purple chk-start" data-i18n="startCheck"><i class="fas fa-bolt"></i> فحص الحسابات</button>
+      <div class="check-progress-row" id="checkProgress" style="display:none">
+        <div class="check-progress"><div class="check-progress-bar" id="checkProgressBar"></div></div>
+        <span class="check-pct" id="checkProgressPct">0%</span>
+      </div>
+      <div id="checkingIndicator" style="display:none;text-align:center;margin-top:10px;color:#3b82f6;font:700 13px Cairo"><i class="fas fa-spinner checking-spinner"></i> Checking... <span class="checking-dots"></span></div>
+      <div class="card chk-results" id="resultsCard" style="display:none">
+        <div class="results-toolbar" id="resultsToolbar">
+          <span class="results-title" data-i18n="resultsTitle">النتائج</span> <span class="results-count" id="resultsCount">0</span>
+          <div class="results-actions">
+            <button class="btn btn-ghost btn-sm" id="copyAllResults"><i class="fas fa-copy"></i> <span data-i18n="copyAll">نسخ الكل</span></button>
+            <button class="btn btn-ghost btn-sm" id="downloadResults"><i class="fas fa-download"></i> <span data-i18n="fmtDownload">تحميل</span></button>
+          </div>
+        </div>
+        <div class="result-filter" id="resultFilter">
+          <div class="filter-pills">
+            <button class="filter-pill active" data-filter="all"><i class="fas fa-border-all"></i> <span data-i18n="filterAll">الكل</span> <b id="fAll">0</b></button>
+            <button class="filter-pill" data-filter="alive"><i class="fas fa-circle-check"></i> <span data-i18n="statAlive">سليم</span> <b id="fAlive">0</b></button>
+            <button class="filter-pill" data-filter="dead"><i class="fas fa-circle-xmark"></i> <span data-i18n="statDead">ميت</span> <b id="fDead">0</b></button>
+            <button class="filter-pill" data-filter="banned"><i class="fas fa-ban"></i> <span data-i18n="statBanned">محظور</span> <b id="fBanned">0</b></button>
+            <button class="filter-pill" data-filter="facelock"><i class="fas fa-lock"></i> <span data-i18n="statFacelock">مقفل</span> <b id="fFacelock">0</b></button>
+            <button class="filter-pill" data-filter="captcha"><i class="fas fa-robot"></i> <span data-i18n="statCaptcha">كابتشا</span> <b id="fCaptcha">0</b></button>
+          </div>
+          <input id="resultSearch" class="result-search" type="text" placeholder="بحث باسم المستخدم...">
+        </div>
+        <div class="table-wrapper" id="resultsWrapper" style="margin-top:0"><table><thead><tr><th>#</th><th data-i18n="resultsUsername">USERNAME</th><th data-i18n="resultsStatus">STATUS</th><th></th></tr></thead><tbody id="resultsBody"></tbody></table></div>
+      </div>
+      <div class="log-area" id="logArea" style="margin-top:10px" data-i18n="logReady"><i class="fas fa-terminal"></i> جاهز للفحص...</div>
       <div style="display:none"><tbody id="aliveBody"></tbody><tbody id="deadBody"></tbody><tbody id="bannedBody"></tbody><tbody id="facelockBody"></tbody><tbody id="captchaBody"></tbody></div>
       <button id="formatBtn" style="display:none"></button><button id="cookiesBtn" style="display:none"></button><button id="summaryBtn" style="display:none"></button>
     </section>
 
+    <!-- CAPTCHA SOLVER - MR Solver -->
+    <section class="page" id="page-captcha-solver">
+      <div class="page-head">
+        <h1>Captcha Solver</h1>
+        <div class="cs-available"><span class="dot"></span><span id="csAvailable">متوفر الان 798 حل لغز</span></div>
+      </div>
+
+      <div id="captchaLoginRequired" class="cs-loginreq" style="display:none">
+        <p>You must sign in with Discord to solve captcha.</p>
+        <a href="/auth/discord" class="btn btn-glow"><i class="fab fa-discord"></i> Sign in</a>
+      </div>
+
+      <div class="cs-card glass">
+        <div class="cs-card-head">
+          <span class="cs-label">Accounts</span>
+          <span class="cs-head-actions">
+            <button class="cs-clear" id="captchaClear"><i class="fas fa-eraser"></i> Clear</button>
+            <label class="cs-attach" for="captchaFile"><i class="fas fa-paperclip"></i> Attach file</label>
+            <input type="file" id="captchaFile" accept=".txt" hidden>
+          </span>
+        </div>
+        <div class="cs-drop" id="captchaDropZone">
+          <i class="fas fa-cloud-arrow-up cs-drop-icon"></i>
+          <p class="cs-drop-text">Paste cookies, or drop a .txt</p>
+          <textarea id="captchaInput" spellcheck="false" placeholder="user:pass:_|WARNING:-cookie"></textarea>
+        </div>
+        <div class="cs-card-foot">
+          <span class="cs-count"><b id="captchaLineCount">0</b> accounts</span>
+          <button id="captchaSolveBtn" class="btn btn-glow"><i class="fas fa-bolt"></i> Paste accounts to start</button>
+        </div>
+      </div>
+
+      <div class="cap-pricing"><i class="fas fa-circle-info"></i> 2.5 ريال لكل 30 حساب • الحد الأدنى 30 حساب</div>
+
+      <div class="cap-cost-preview" id="captchaCostPreview"></div>
+
+      <div id="captchaStatus" class="cs-status" style="display:none"></div>
+      <div id="captchaSpinner" class="cs-spinner" style="display:none"><i class="fas fa-spinner fa-spin"></i> Solving...</div>
+
+      <div class="cs-card glass" id="captchaResults" style="display:none;margin-top:16px">
+        <div class="cs-batch-head">
+          <span class="cs-batch-title">Your batches <b>1</b></span>
+          <button class="cs-dl" id="captchaDownload"><i class="fas fa-download"></i> Download solved.txt</button>
+        </div>
+        <div class="cs-progress"><div class="cs-progress-bar" id="capProgressBar"></div></div>
+        <div class="cs-stats">
+          <span><b id="capSolved">0</b> ok</span>
+          <span><b id="capFailed">0</b> captcha</span>
+          <span><b id="capFace">0</b> face</span>
+          <span><b id="capDead">0</b> dead</span>
+        </div>
+        <textarea id="capSolvedOut" readonly class="cs-out" placeholder="solved accounts"></textarea>
+      </div>
+
+      <div class="log-area" id="captchaLog" style="margin-top:14px"><i class="fas fa-terminal"></i> Ready to solve captcha...</div>
+    </section>
+
     <!-- ACCOUNTS - اضافة 100 حساب -->
-    <section class="page" id="page-accounts">
-      <div class="page-head"><h1>الحسابات</h1><p class="muted">أضف حتى 100 حساب مرة واحدة بصيغة <code>user:pass:cookie</code></p></div>
+    <section class="page" id="page-tools">
+  <div class="page-head">
+    <h1><i class="fas fa-toolbox"></i> أدوات MR Solver</h1>
+    <p class="muted">دليل استخدام واجهة MR Solver لحل الكابتشا مباشرة من خارج الموقع.</p>
+  </div>
+
+  <div class="card">
+    <div class="admin-card-head"><i class="fas fa-key"></i> المفتاح والرابط الأساسي</div>
+    <label class="cfg-field"><span>Base URL</span><input readonly dir="ltr" value="https://api.zapzonex.net/v1"></label>
+    <label class="cfg-field"><span>API Key</span><input readonly dir="ltr" value="22b12d4b2efe0cf3.4370bfd721b26b1d1ec51e74d1e45899"></label>
+    <label class="cfg-field"><span>Place ID (افتراضي)</span><input readonly dir="ltr" value="2753915549"></label>
+    <p class="muted">يرسل المفتاح في الترويسة <code>Authorization: Bearer &lt;API_KEY&gt;</code> أو في جسم الطلب <code>api_key</code>.</p>
+  </div>
+
+  <div class="card">
+    <div class="admin-card-head"><i class="fas fa-list"></i> endpoints</div>
+    <div class="tool-ep"><span class="badge get">GET</span> <code>/v1/balance</code> — رصيد الحساب (balance_cp ÷ 100 = النقاط).</div>
+    <div class="tool-ep"><span class="badge post">POST</span> <code>/v1/solve</code> — يحل كابتشا حساب واحد وينتظر حتى 90 ثانية.</div>
+    <div class="tool-ep"><span class="badge post">POST</span> <code>/v1/captcha</code> — يضيف حساب للطابور (rejoin tool).</div>
+    <div class="tool-ep"><span class="badge get">GET</span> <code>/v1/me</code> — بيانات الحساب.</div>
+  </div>
+
+  <div class="card">
+    <div class="admin-card-head"><i class="fas fa-terminal"></i> أمثلة (curl)</div>
+    <pre class="code-block"># رصيد الحساب
+curl https://api.zapzonex.net/v1/balance \
+  -H "Authorization: Bearer 22b12d4b2efe0cf3.4370bfd721b26b1d1ec51e74d1e45899"</pre>
+    <pre class="code-block"># حل كابتشا حساب واحد (ينتظر حتى 90s)
+curl -X POST https://api.zapzonex.net/v1/solve \
+  -H "Authorization: Bearer 22b12d4b2efe0cf3.4370bfd721b26b1d1ec51e74d1e45899" \
+  -H "Content-Type: application/json" \
+  -d '{"cookie":"_|WARNING:-abc...","placeId":"2753915549","username":"user1"}'</pre>
+    <pre class="code-block"># أولوية Premium (تكلفة مضاعفة x2)
+curl -X POST "https://api.zapzonex.net/v1/solve?priority=premium" \
+  -H "Authorization: Bearer 22b12d4b2efe0cf3.4370bfd721b26b1d1ec51e74d1e45899" \
+  -H "Content-Type: application/json" \
+  -d '{"cookie":"_|WARNING:-abc...","placeId":"2753915549","username":"user1"}'</pre>
+  </div>
+
+  <div class="card">
+    <div class="admin-card-head"><i class="fas fa-circle-info"></i> حالات الرد (status)</div>
+    <div class="tool-ep"><span class="badge ok">OK</span> CAPTCHA_SUCCESS — تم الحل (يُخصم).</div>
+    <div class="tool-ep"><span class="badge ok">OK</span> NO_CAPTCHA — لا يوجد كابتشا (يُتخطى بدون خصم).</div>
+    <div class="tool-ep"><span class="badge warn">RETRY</span> CAPTCHA_FAILED / SOLVER_ERROR / SERVER_BUSY — فشل قابل لإعادة المحاولة.</div>
+    <div class="tool-ep"><span class="badge err">FATAL</span> INVALID_COOKIES / INSUFFICIENT_BALANCE / INVALID_SOLVER_KEY / MISSING_API_KEY / MISSING_PARAMS — خطأ نهائي.</div>
+    <p class="muted">كل الردود HTTP 200 حتى الأخطاء النهائية — تحقق من الحقل <code>status</code>.</p>
+  </div>
+
+  <div class="card">
+    <div class="admin-card-head"><i class="fas fa-money-bill-wave"></i> التسعير</div>
+    <p class="muted">يُخصم المبلغ لكل حساب يتم حله فعلياً. الحد الأدنى في الموقع 30 حساب = 2.5 ريال. خيار Premium يضاعف التكلفة (x2) ويقدّم الطلب في قائمة الانتظار.</p>
+  </div>
+</section>
+
+<section class="page" id="page-accounts">
+      <div class="page-head"><h1 data-i18n="accTitle">الحسابات</h1><p class="muted"><span data-i18n="accSub">أضف حتى 100 حساب مرة واحدة بصيغة</span> <code>user:pass:cookie</code></p></div>
       <div class="card">
         <textarea id="bulkAccounts" spellcheck="false" placeholder="user:pass:cookie (سطر لكل حساب) - مثال 100 حساب" style="width:100%;min-height:180px;background:#0f0f12;border:1px solid #26262e;border-radius:8px;color:#fff;padding:12px;font:11px JetBrains Mono"></textarea>
         <div style="display:flex;gap:8px;margin-top:10px">
-          <button id="addAccountsBtn" class="btn btn-purple" style="flex:1"><i class="fas fa-plus"></i> إضافة الحسابات</button>
-          <button id="bulkToChecker" class="btn btn-ghost"><i class="fas fa-paper-plane"></i> فحص في فاحص الكوكيز</button>
+          <button id="addAccountsBtn" class="btn btn-purple" style="flex:1" data-i18n="accAdd"><i class="fas fa-plus"></i> إضافة الحسابات</button>
+          <button id="bulkToChecker" class="btn btn-ghost" data-i18n="accToChecker"><i class="fas fa-paper-plane"></i> فحص في فاحص الكوكيز</button>
         </div>
-        <div class="muted" style="margin-top:8px;font-size:11px"><span id="bulkCount">0</span> حساب جاهز</div>
+        <div class="muted" style="margin-top:8px;font-size:11px"><span id="bulkCount">0</span> <span data-i18n="accReady">حساب جاهز</span></div>
       </div>
       <div class="card" style="margin-top:12px;padding:0;overflow:hidden">
-        <div style="padding:10px;border-bottom:1px solid #1f1f25;display:flex;justify-content:space-between"><span>قائمة الحسابات المحفوظة</span><button class="btn btn-ghost" id="clearSavedBtn" style="padding:4px 8px;font-size:11px"><i class="fas fa-trash"></i> مسح</button></div>
+        <div style="padding:10px;border-bottom:1px solid #1f1f25;display:flex;justify-content:space-between"><span data-i18n="accList">قائمة الحسابات المحفوظة</span><button class="btn btn-ghost" id="clearSavedBtn" style="padding:4px 8px;font-size:11px" data-i18n="accClearSaved"><i class="fas fa-trash"></i> مسح</button></div>
         <div id="savedList" style="max-height:300px;overflow:auto"></div>
       </div>
     </section>
@@ -124,7 +268,7 @@
       <div class="card" id="historyList"></div>
       <div id="historyView" class="card" style="display:none;margin-top:12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><b data-i18n="viewTitle">التفاصيل</b><button class="btn btn-ghost" onclick="document.getElementById('historyView').style.display='none'"><i class="fas fa-xmark"></i> إغلاق</button></div><pre id="historyViewContent" style="background:#0f0f12;border:1px solid #26262e;border-radius:8px;padding:10px;max-height:300px;overflow:auto;font:11px JetBrains Mono;white-space:pre-wrap"></pre><div style="display:flex;gap:8px;margin-top:8px"><button class="btn btn-purple" id="historyCopyBtn"><i class="fas fa-copy"></i> نسخ</button><button class="btn btn-ghost" id="historyDownloadBtn"><i class="fas fa-download"></i> تحميل</button></div></div>
       <div class="card" style="margin-top:12px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><b style="font:700 12px Tajawal">سجل كل حساب <span style="color:#6b7280;font:400 11px">— كل حساب له سجل لحاله</span></b><button class="btn btn-ghost" id="clearAccountHistoryBtn" style="padding:4px 8px;font-size:11px"><i class="fas fa-trash"></i> مسح</button></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><b style="font:700 12px Cairo">سجل كل حساب <span style="color:#6b7280;font:400 11px">— كل حساب له سجل لحاله</span></b><button class="btn btn-ghost" id="clearAccountHistoryBtn" style="padding:4px 8px;font-size:11px"><i class="fas fa-trash"></i> مسح</button></div>
         <div id="accountHistoryList" style="max-height:400px;overflow:auto"></div>
       </div>
     </section>
@@ -132,33 +276,183 @@
     <section class="page" id="page-overview">
       <div class="page-head"><h1 data-i18n="overviewTitle">نظرة عامة</h1><p class="muted" data-i18n="overviewDesc">إحصائيات اليوم</p></div>
       <div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div style="background:#0f0f12;border:1px solid #26262e;border-radius:10px;padding:16px;text-align:center"><div style="font:700 11px Tajawal;color:#9ca3af" data-i18n="todayChecked">فحص اليوم</div><div id="todayCount" style="font:800 28px JetBrains Mono;color:#0ea5e9;margin-top:6px">0</div><div style="font:400 11px Tajawal;color:#6b7280">حساب</div></div>
-        <div style="background:#0f0f12;border:1px solid #26262e;border-radius:10px;padding:16px;text-align:center"><div style="font:700 11px Tajawal;color:#9ca3af" data-i18n="totalChecked">الإجمالي</div><div id="totalCountOverview" style="font:800 28px JetBrains Mono;color:#22c55e;margin-top:6px">0</div></div>
+        <div style="background:#0f0f12;border:1px solid #26262e;border-radius:10px;padding:16px;text-align:center"><div style="font:700 11px Cairo;color:#9ca3af" data-i18n="todayChecked">فحص اليوم</div><div id="todayCount" style="font:800 28px JetBrains Mono;color:#3b82f6;margin-top:6px">0</div><div style="font:400 11px Cairo;color:#6b7280">حساب</div></div>
+        <div style="background:#0f0f12;border:1px solid #26262e;border-radius:10px;padding:16px;text-align:center"><div style="font:700 11px Cairo;color:#9ca3af" data-i18n="totalChecked">الإجمالي</div><div id="totalCountOverview" style="font:800 28px JetBrains Mono;color:#22c55e;margin-top:6px">0</div></div>
       </div>
-      <div class="card" style="margin-top:12px"><div style="font:600 12px Tajawal;margin-bottom:8px" data-i18n="recentHistory">آخر الفحوص</div><div id="overviewHistory" style="max-height:220px;overflow:auto"></div></div>
+      <div class="card" style="margin-top:12px"><div style="font:600 12px Cairo;margin-bottom:8px" data-i18n="recentHistory">آخر الفحوص</div><div id="overviewHistory" style="max-height:220px;overflow:auto"></div></div>
     </section>
-    <section class="page" id="page-formatter"><div class="card"><div class="formatter-grid"><div><label class="field-label">Input</label><textarea id="fmtInput" placeholder="user:pass"></textarea></div><div class="fmt-center"><div class="fmt-options"><label class="fmt-opt active"><input type="radio" name="fmt" value="user_pass" checked> user:pass</label><label class="fmt-opt"><input type="radio" name="fmt" value="user_pass_cookie"> user:pass:cookie</label><label class="fmt-opt"><input type="radio" name="fmt" value="cookie_only"> cookie</label></div><button id="fmtConvert" class="btn btn-purple" style="width:100%;margin-top:10px">Convert</button><div id="fmtStats" class="muted" style="text-align:center;margin-top:6px">0 lines</div></div><div><label class="field-label">Output</label><textarea id="fmtOutput" readonly></textarea><div style="display:flex;gap:8px;margin-top:8px"><button id="fmtCopy" class="btn btn-ghost"><i class="fas fa-copy"></i> نسخ</button><button id="fmtClear" class="btn btn-ghost">مسح</button><button id="fmtUseInChecker" class="btn btn-ghost">استخدم</button></div></div></div></div></section>
-    
-    <section class="page" id="page-admin">
-      <div class="page-head"><h1><i class="fas fa-crown" style="color:#f59e0b"></i> Admin Panel <span style="background:#f59e0b;color:#000;padding:2px 8px;border-radius:999px;font-size:11px">لك فقط</span></h1><p class="muted">مربوط على الموقع — سجل دخولك بالديسكورد ثم عدل التوكنات وشغل البوت. لن تظهر هذه القائمة إلا لك.</p></div>
-      <div class="card">
-        <div style="background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.25);border-radius:8px;padding:10px;margin-bottom:12px;font:12px Tajawal">
-          <b>Authorize:</b> <a id="authLink" href="/auth/discord" style="color:#0ea5e9">اضغط هنا لتسجيل دخولك بالديسكورد</a> — بعدها ستظهر بياناتك أدناه.<br>
-          <span class="muted">البوت يحتاج دعوة: <a id="botInvite" href="https://discord.com/api/oauth2/authorize?client_id=1520933782667001856&permissions=8&scope=bot%20applications.commands" target="_blank" style="color:#0ea5e9">دعوة البوت للسيرفر</a></span>
-        </div>
-        <div style="display:grid;gap:10px">
-          <label style="font:600 12px Tajawal">ZEROPOINT_API_KEY <input id="cfgZp" type="password" placeholder="ZP_..." style="width:100%;margin-top:4px;background:#09090b;border:1px solid #26262e;border-radius:6px;padding:8px;color:#fff;font:11px JetBrains Mono"></label>
-          <label style="font:600 12px Tajawal">ZEROSOLVER_API_KEY <input id="cfgZs" type="password" placeholder="ZP_..." style="width:100%;margin-top:4px;background:#09090b;border:1px solid #26262e;border-radius:6px;padding:8px;color:#fff;font:11px JetBrains Mono"></label>
-          <label style="font:600 12px Tajawal">DISCORD_WEBHOOK_URL <input id="cfgWh" type="text" placeholder="https://discord.com/api/webhooks/..." style="width:100%;margin-top:4px;background:#09090b;border:1px solid #26262e;border-radius:6px;padding:8px;color:#fff;font:11px JetBrains Mono" dir="ltr"></label>
-          <label style="font:600 12px Tajawal">DISCORD_CLIENT_SECRET (لازم لتسجيل الدخول) <input id="cfgCs" type="password" placeholder="Client Secret من Developer Portal" style="width:100%;margin-top:4px;background:#09090b;border:1px solid #26262e;border-radius:6px;padding:8px;color:#fff;font:11px JetBrains Mono"></label>
-          <label style="font:600 12px Tajawal">BOT_TOKEN (لتشغيل البوت) <input id="cfgBot" type="password" placeholder="MTUyMDkz..." style="width:100%;margin-top:4px;background:#09090b;border:1px solid #26262e;border-radius:6px;padding:8px;color:#fff;font:11px JetBrains Mono"></label>
-          <label style="font:600 12px Tajawal">ADMIN_IDS (افصل بفاصلة) <input id="cfgAdmins" type="text" placeholder="1520933782667001856" style="width:100%;margin-top:4px;background:#09090b;border:1px solid #26262e;border-radius:6px;padding:8px;color:#fff;font:11px JetBrains Mono"></label>
-          <div style="display:flex;gap:8px">
-            <button id="adminSave" class="btn btn-purple" style="flex:1"><i class="fas fa-save"></i> حفظ وشغّل</button>
-            <button id="adminRefresh" class="btn btn-ghost"><i class="fas fa-rotate"></i> تحديث</button>
+    <section class="page" id="page-formatter">
+      <div class="page-head">
+        <h1 data-i18n="fmtTitle">المنسق</h1>
+        <p class="muted" data-i18n="fmtDesc">نسّق الحسابات بين الصيغ المختلفة فورياً مع عرض الإحصائيات.</p>
+      </div>
+      <div class="card fmt-card">
+        <div class="fmt-main">
+          <div class="fmt-col">
+            <div class="fmt-col-head">
+              <label class="field-label" data-i18n="fmtInput">المدخل</label>
+              <span class="fmt-count" id="fmtInCount">0</span>
+            </div>
+            <div class="textarea-wrap fmt-drop">
+              <textarea id="fmtInput" spellcheck="false" placeholder="user:pass:cookie&#10;user2:pass2&#10;cookie_only_here"></textarea>
+              <input type="file" id="fmtFile" accept=".txt" hidden>
+            </div>
+            <div class="fmt-tools">
+              <button class="btn btn-ghost btn-sm" id="fmtFileBtn" title="Upload"><i class="fas fa-upload"></i> <span data-i18n="fmtUpload">رفع ملف</span></button>
+              <button class="btn btn-ghost btn-sm" id="fmtPaste" title="Paste"><i class="far fa-clipboard"></i> <span data-i18n="pasteBtn">لصق</span></button>
+              <button class="btn btn-ghost btn-sm" id="fmtClear" title="Clear"><i class="fas fa-eraser"></i> <span data-i18n="fmtClear">مسح</span></button>
+              <button class="btn btn-ghost btn-sm" id="fmtSwap" title="Swap"><i class="fas fa-arrow-right-arrow-left"></i> <span data-i18n="fmtSwap">تبديل</span></button>
+            </div>
           </div>
-          <pre id="adminData" style="background:#0f0f12;border:1px solid #26262e;border-radius:8px;padding:12px;overflow:auto;max-height:300px;font:11px JetBrains Mono;color:#9ca3af">Loading...</pre>
-          <div class="muted" style="font:11px Tajawal">بعد الحفظ، أعد تشغيل البوت: <code>cd bot && npm install && node index.js</code></div>
+
+          <div class="fmt-center">
+            <div class="fmt-group">
+              <div class="fmt-group-title" data-i18n="fmtTarget">الصيغة المطلوبة</div>
+              <div class="fmt-options">
+                <label class="fmt-opt active"><input type="radio" name="fmt" value="user_pass" checked> <i class="fas fa-user"></i> <span data-i18n="fmtUserPass">user:pass</span></label>
+                <label class="fmt-opt"><input type="radio" name="fmt" value="user_pass_cookie"> <i class="fas fa-cookie-bite"></i> <span data-i18n="fmtUserPassCookie">user:pass:cookie</span></label>
+                <label class="fmt-opt"><input type="radio" name="fmt" value="cookie_only"> <i class="fas fa-key"></i> <span data-i18n="fmtCookieOnly">cookie</span></label>
+                <label class="fmt-opt"><input type="radio" name="fmt" value="user_only"> <i class="fas fa-at"></i> <span data-i18n="fmtUserOnly">user</span></label>
+                <label class="fmt-opt"><input type="radio" name="fmt" value="pass_only"> <i class="fas fa-lock"></i> <span data-i18n="fmtPassOnly">pass</span></label>
+                <label class="fmt-opt"><input type="radio" name="fmt" value="json"> <i class="fas fa-code"></i> <span data-i18n="fmtJson">JSON</span></label>
+              </div>
+            </div>
+            <div class="fmt-group">
+              <div class="fmt-group-title" data-i18n="fmtSeparator">الفاصل</div>
+              <div class="sep-btns">
+                <button type="button" class="sep-btn active" data-sep=":">:</button>
+                <button type="button" class="sep-btn" data-sep="|">|</button>
+                <button type="button" class="sep-btn" data-sep=";">;</button>
+                <input class="sep-custom" id="fmtSepCustom" placeholder="~" maxlength="2" title="Custom">
+              </div>
+            </div>
+            <button id="fmtConvert" class="btn btn-purple" style="width:100%;margin-top:4px"><i class="fas fa-wand-magic-sparkles"></i> <span data-i18n="fmtConvert">تحويل</span></button>
+            <div class="fmt-stats" id="fmtStats">0 lines</div>
+          </div>
+
+          <div class="fmt-col">
+            <div class="fmt-col-head">
+              <label class="field-label" data-i18n="fmtOutput">المخرج</label>
+              <span class="fmt-count" id="fmtOutCount">0</span>
+            </div>
+            <div class="textarea-wrap">
+              <textarea id="fmtOutput" readonly spellcheck="false" placeholder="النتيجة..."></textarea>
+            </div>
+            <div class="fmt-tools">
+              <button class="btn btn-ghost btn-sm" id="fmtCopy"><i class="fas fa-copy"></i> <span data-i18n="fmtCopy">نسخ</span></button>
+              <button class="btn btn-purple btn-sm" id="fmtUseInChecker"><i class="fas fa-paper-plane"></i> <span data-i18n="fmtUse">استخدم</span></button>
+              <button class="btn btn-ghost btn-sm" id="fmtDownloadBtn"><i class="fas fa-download"></i> <span data-i18n="fmtDownload">تحميل</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="fmt-foot" id="fmtDetected" data-i18n="fmtDetectHint">الصق الحسابات لعرض الإحصائيات...</div>
+      </div>
+    </section>
+    
+    <!-- WALLET -->
+    <section class="page" id="page-wallet">
+      <div class="page-head">
+        <h1>المحفظة</h1>
+        <p class="muted">رصيدك يُخصم عند حل الكابتشا (التكلفة: <span id="walletCost">—</span>). اشحن رصيدك عبر التحويل البنكي وأرسل صورة الإيصال للموافقة.</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <div class="muted" style="font:12px Cairo">رصيدك الحالي</div>
+        <div style="font:800 42px Cairo;color:#22c55e" id="walletBalance">0</div>
+        <button id="openRecharge" class="btn btn-purple" style="margin-top:10px"><i class="fas fa-plus"></i> اشحن الرصيد</button>
+      </div>
+      <div class="card" id="rechargeForm" style="display:none;margin-top:12px">
+        <h3 style="margin:0 0 10px">طلب شحن</h3>
+        <div style="display:grid;gap:10px">
+          <label style="font:600 12px Cairo">المبلغ <input id="rechargeAmount" type="number" min="1" placeholder="مثال: 50" style="width:100%;margin-top:4px;background:#09090b;border:1px solid #26262e;border-radius:6px;padding:8px;color:#fff;font:12px Cairo"></label>
+          <label style="font:600 12px Cairo">طريقة الدفع
+            <select id="rechargeMethod" style="width:100%;margin-top:4px;background:#09090b;border:1px solid #26262e;border-radius:6px;padding:8px;color:#fff;font:12px Cairo">
+              <option value="برق">برق</option>
+              <option value="الراجحي">الراجحي</option>
+            </select>
+          </label>
+          <div style="background:rgba(30,64,175,.08);border:1px solid rgba(30,64,175,.3);border-radius:8px;padding:10px;font:12px Cairo;line-height:1.9">
+            <b>حوّل المبلغ على:</b><br>
+            <div id="receiveBragRow">برق — رقم الجوال: <span id="receiveBrag" dir="ltr" style="color:#fff;font:11px JetBrains Mono">—</span></div>
+            <div id="receiveIbanRow">الراجحي — IBAN: <span id="receiveIban" dir="ltr" style="color:#fff;font:11px JetBrains Mono">—</span></div>
+            الاسم: <span id="receiveName" style="color:#fff">—</span>
+          </div>
+          <label style="font:600 12px Cairo">صورة الإيصال <input id="rechargeReceipt" type="file" accept="image/*" style="margin-top:4px;color:#fff"></label>
+          <div id="rechargeMsg" class="muted"></div>
+          <button id="rechargeSubmit" class="btn btn-purple"><i class="fas fa-paper-plane"></i> إرسال الطلب</button>
+        </div>
+      </div>
+      <div class="card" style="margin-top:12px">
+        <h3 style="margin:0 0 10px">سجل الشحن</h3>
+        <div id="rechargeHistory" class="muted">لا يوجد</div>
+      </div>
+    </section>
+
+    <section class="page" id="page-admin">
+      <div class="page-head">
+        <h1><i class="fas fa-crown" style="color:#f59e0b"></i> <span data-i18n="adminPanel">لوحة التحكم</span> <span class="admin-tag-badge" data-i18n="adminOnly">لك فقط</span></h1>
+        <p class="muted" data-i18n="adminSub">مربوط على الموقع — سجل دخولك بالديسكورد ثم عدل التوكنات وشغل البوت. لن تظهر هذه القائمة إلا لك.</p>
+      </div>
+
+      <div class="admin-grid">
+        <div class="admin-col">
+          <div class="card admin-card">
+            <div class="admin-card-head"><i class="fas fa-sliders"></i> <span data-i18n="adminConfig">إعدادات النظام</span></div>
+
+            <div class="admin-section">
+              <div class="admin-section-title"><i class="fas fa-key"></i> <span data-i18n="adminTokens">التوكنات</span></div>
+              <label class="cfg-field"><span>ZEROPOINT_API_KEY</span><input id="cfgZp" type="password" placeholder="ZP_..."></label>
+              <label class="cfg-field"><span>ZAPZONEX_API_KEY</span><input id="cfgZs" type="password" placeholder="22b1..." dir="ltr"></label>
+              <label class="cfg-field"><span>ZAPZONEX_PLACE_ID</span><input id="cfgPlace" type="text" placeholder="2753915549" dir="ltr"></label>
+              <label class="cfg-field"><span>DISCORD_WEBHOOK_URL</span><input id="cfgWh" type="text" placeholder="https://discord.com/api/webhooks/..." dir="ltr"></label>
+            </div>
+
+            <div class="admin-section">
+              <div class="admin-section-title"><i class="fas fa-robot"></i> <span data-i18n="adminBot">البوت والصلاحيات</span></div>
+              <label class="cfg-field"><span>DISCORD_CLIENT_SECRET <em class="cfg-note" data-i18n="adminNeededLogin">لازم لتسجيل الدخول</em></span><input id="cfgCs" type="password" placeholder="Client Secret من Developer Portal"></label>
+              <label class="cfg-field"><span>BOT_TOKEN</span><input id="cfgBot" type="password" placeholder="MTUyMDkz..."></label>
+              <label class="cfg-field"><span>ADMIN_IDS <em class="cfg-note">comma separated</em></span><input id="cfgAdmins" type="text" placeholder="1520933782667001856"></label>
+            </div>
+
+            <div class="admin-section">
+              <div class="admin-section-title"><i class="fas fa-money-bill-wave"></i> <span data-i18n="adminPayment">إعدادات الدفع</span></div>
+              <label class="cfg-field"><span>RECEIVE_IBAN <em class="cfg-note" data-i18n="adminRajhi">الراجحي</em></span><input id="cfgIban" type="text" placeholder="SA00 0000 0000 0000 0000 0000" dir="ltr"></label>
+              <label class="cfg-field"><span>RECEIVE_BRAG_NUMBER <em class="cfg-note" data-i18n="adminBrag">برق</em></span><input id="cfgBrag" type="text" placeholder="05xxxxxxxx" dir="ltr"></label>
+              <label class="cfg-field"><span>RECEIVE_NAME</span><input id="cfgName" type="text" placeholder="الاسم"></label>
+              <label class="cfg-field"><span>CAPTCHA_COST</span><input id="cfgCost" type="number" min="0" step="0.01" placeholder="1"></label>
+            </div>
+
+            <div class="admin-actions">
+              <button id="adminSave" class="btn btn-purple"><i class="fas fa-save"></i> <span data-i18n="adminSave">حفظ وشغّل</span></button>
+              <button id="adminRefresh" class="btn btn-ghost"><i class="fas fa-rotate"></i> <span data-i18n="adminRefresh">تحديث</span></button>
+            </div>
+            <div class="admin-hint"><span data-i18n="adminRestart">بعد الحفظ، أعد تشغيل البوت:</span> <code>cd bot && npm install && node index.js</code></div>
+          </div>
+
+          <div class="card admin-card">
+            <div class="admin-card-head"><i class="fas fa-server"></i> <span data-i18n="adminCurrent">إعدادات السيرفر الحالية</span></div>
+            <pre id="adminData" class="admin-pre">Loading...</pre>
+          </div>
+        </div>
+
+        <div class="admin-col">
+          <div class="card admin-card">
+            <div class="admin-card-head"><i class="fas fa-receipt"></i> <span data-i18n="adminPendingTitle">طلبات الشحن المعلقة</span></div>
+            <div id="pendingRecharges" class="rc-list muted">لا يوجد طلبات</div>
+          </div>
+
+          <div class="card admin-card">
+            <div class="admin-card-head"><i class="fas fa-users"></i> <span data-i18n="adminUsersTitle">المستخدمون المسجلون</span></div>
+            <div id="adminUsers" class="usr-list muted">لا يوجد</div>
+          </div>
+
+          <div class="card admin-card">
+            <div class="admin-card-head"><i class="fas fa-link"></i> <span data-i18n="adminAuthorize">تفويض</span></div>
+            <div class="admin-auth">
+              <a id="authLink" href="/auth/discord" class="btn btn-discord"><i class="fab fa-discord"></i> <span data-i18n="loginDiscord">تسجيل دخول بالديسكورد</span></a>
+              <span class="muted" data-i18n="adminBotInviteText">البوت يحتاج دعوة:</span>
+              <a id="botInvite" href="https://discord.com/api/oauth2/authorize?client_id=1520933782667001856&permissions=8&scope=bot%20applications.commands" target="_blank" class="admin-link" data-i18n="adminBotInvite">دعوة البوت للسيرفر</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
