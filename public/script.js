@@ -1755,7 +1755,7 @@
         function updateReceive(){
             var m = methodEl ? methodEl.value : 'برق';
             if (bragRowEl) bragRowEl.style.display = (m === 'برق') ? 'block' : 'none';
-            if (ibanRowEl) ibanRowEl.style.display = (m === 'الراجحي') ? 'block' : 'none';
+            if (ibanRowEl) ibanRowEl.style.display = (m === 'البنك العربي الوطني') ? 'block' : 'none';
         }
         if (methodEl) methodEl.addEventListener('change', updateReceive);
         var walletIconBtn = document.getElementById('walletIconBtn');
