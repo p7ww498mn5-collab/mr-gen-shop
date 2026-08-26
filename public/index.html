@@ -425,7 +425,7 @@ curl -X POST "https://api.zapzonex.net/v1/solve?priority=premium" \
               <button id="adminSave" class="btn btn-purple"><i class="fas fa-save"></i> <span data-i18n="adminSave">حفظ وشغّل</span></button>
               <button id="adminRefresh" class="btn btn-ghost"><i class="fas fa-rotate"></i> <span data-i18n="adminRefresh">تحديث</span></button>
             </div>
-            <div class="admin-hint"><span data-i18n="adminRestart">بعد الحفظ، أعد تشغيل البوت:</span> <code>cd bot && npm install && node index.js</code></div>
+            <div class="admin-hint"><span data-i18n="adminRestart">البوت يشتغل تلقائياً مع الموقع:</span> <code>node server.js</code></div>
           </div>
 
           <div class="card admin-card">
@@ -451,6 +451,16 @@ curl -X POST "https://api.zapzonex.net/v1/solve?priority=premium" \
               <a id="authLink" href="/auth/discord" class="btn btn-discord"><i class="fab fa-discord"></i> <span data-i18n="loginDiscord">تسجيل دخول بالديسكورد</span></a>
               <span class="muted" data-i18n="adminBotInviteText">البوت يحتاج دعوة:</span>
               <a id="botInvite" href="https://discord.com/api/oauth2/authorize?client_id=1520933782667001856&permissions=8&scope=bot%20applications.commands" target="_blank" class="admin-link" data-i18n="adminBotInvite">دعوة البوت للسيرفر</a>
+            </div>
+          </div>
+
+          <div class="card admin-card">
+            <div class="admin-card-head"><i class="fas fa-robot"></i> حسابات البوت (للحل عبر دسكورد)</div>
+            <p class="muted" style="font:12px Cairo">ضع حسابات بالصيغة <code>user:pass:cookie</code>، حساب بكل سطر. الزبون يكتب الاسم والباس المطابقين لحساب هنا، فيحل له البوت الكابتشا تلقائياً عبر الموقع.</p>
+            <textarea id="botAccountsText" dir="ltr" placeholder="user1:pass1:cookie1&#10;user2:pass2:cookie2" style="width:100%;min-height:140px;background:#09090b;border:1px solid #26262e;border-radius:8px;padding:10px;color:#fff;font:12px JetBrains Mono"></textarea>
+            <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
+              <button id="botAccountsSave" class="btn btn-purple"><i class="fas fa-save"></i> حفظ الحسابات</button>
+              <span id="botAccountsCount" class="muted" style="font:12px Cairo"></span>
             </div>
           </div>
         </div>
