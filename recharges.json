@@ -1,0 +1,38 @@
+[
+  {
+    "id": "mt8xuiv9i2v2y0",
+    "userId": "1518568013194854420",
+    "username": "iMS",
+    "amount": 1,
+    "method": "برق",
+    "status": "approved",
+    "createdAt": "2026-08-25T17:27:58.727Z",
+    "receiptFile": "uploads\\receipts\\mt8xuiv9i2v2y0.png",
+    "receiptExt": "png",
+    "approvedAt": "2026-08-25T17:28:10.687Z"
+  },
+  {
+    "id": "mt8y6f9bo3b5u5",
+    "userId": "1518568013194854420",
+    "username": "iMS",
+    "amount": 20,
+    "method": "برق",
+    "status": "approved",
+    "createdAt": "2026-08-25T17:37:13.921Z",
+    "receiptFile": "uploads\\receipts\\mt8y6f9bo3b5u5.png",
+    "receiptExt": "png",
+    "approvedAt": "2026-08-25T17:37:19.794Z"
+  },
+  {
+    "id": "mt9a74796ysusz",
+    "userId": "1518568013194854420",
+    "username": "iMS",
+    "amount": 1,
+    "method": "برق",
+    "status": "approved",
+    "createdAt": "2026-08-25T23:13:41.640Z",
+    "receiptFile": "uploads\\receipts\\mt9a74796ysusz.png",
+    "receiptExt": "png",
+    "approvedAt": "2026-08-25T23:14:40.022Z"
+  }
+]

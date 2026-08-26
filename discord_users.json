@@ -1,0 +1,32 @@
+{
+  "1446250076706967673": {
+    "id": "1446250076706967673",
+    "username": "2jww",
+    "global_name": "! MR",
+    "discriminator": "0",
+    "avatar": "https://cdn.discordapp.com/avatars/1446250076706967673/e32d5581f778684c9c340493f542f41a.png",
+    "avatarUrl": "https://cdn.discordapp.com/avatars/1446250076706967673/e32d5581f778684c9c340493f542f41a.png",
+    "email": "abusaad421@yahoo.com",
+    "isAdmin": true,
+    "firstLogin": "2026-08-25T11:54:11.193Z",
+    "lastLogin": "2026-08-25T11:54:11.193Z",
+    "loginCount": 1,
+    "lastIp": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36"
+  },
+  "1518568013194854420": {
+    "id": "1518568013194854420",
+    "username": "thekingofhimselfims",
+    "global_name": "iMS",
+    "discriminator": "0",
+    "avatar": "https://cdn.discordapp.com/avatars/1518568013194854420/24957adb42b8871b755801df10af7b70.png",
+    "avatarUrl": "https://cdn.discordapp.com/avatars/1518568013194854420/24957adb42b8871b755801df10af7b70.png",
+    "email": "ims13q@gmail.com",
+    "isAdmin": true,
+    "firstLogin": "2026-08-25T11:56:20.804Z",
+    "lastLogin": "2026-08-25T14:18:48.947Z",
+    "loginCount": 6,
+    "lastIp": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36"
+  }
+}
