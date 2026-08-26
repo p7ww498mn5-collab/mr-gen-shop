@@ -196,16 +196,19 @@ app.use((req,res,next)=>{
   res.setHeader('X-Download-Options','noopen');
   next();
 });
-// ===== CSRF/origin guard for mutating requests =====
-function csrfGuard(req,res,next){
-  if (req.method==='POST'||req.method==='PUT'||req.method==='DELETE'||req.method==='PATCH'){
-    const origin=req.get('origin'); const host=req.get('host');
-    if (origin && origin!==req.protocol+'://'+host) return res.status(403).json({status:'error',message:'طلب غير مسموح'});
-  }
-  next();
+// ===== Persistent file-based session store (survives restarts) =====
+const SESSIONS_FILE = path.join(__dirname, 'sessions.json');
+let __sessions = {};
+try { __sessions = JSON.parse(fs.readFileSync(SESSIONS_FILE, 'utf8')); } catch (e) {}
+function __persistSessions(){ try { fs.writeFileSync(SESSIONS_FILE, JSON.stringify(__sessions)); } catch (e) {} }
+class FileSessionStore extends session.Store {
+  get(sid, cb){ const s = __sessions[sid]; if (!s) return cb(null, null); const exp = s.cookie && s.cookie.expires; if (exp && new Date(exp) < new Date()){ delete __sessions[sid]; __persistSessions(); return cb(null, null); } cb(null, s); }
+  set(sid, sess, cb){ __sessions[sid] = sess; __persistSessions(); cb(null); }
+  destroy(sid, cb){ delete __sessions[sid]; __persistSessions(); cb(null); }
+  touch(sid, sess, cb){ __sessions[sid] = sess; cb(null); }
 }
-app.use(csrfGuard);
 app.use(session({
+    store: new FileSessionStore(),
     secret: SESSION_SECRET, resave: false, saveUninitialized: false,
     cookie: { httpOnly: true, secure: false, maxAge: 1000*60*60*24*7, sameSite: 'lax' }
 }));
