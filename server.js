@@ -9,6 +9,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const fs = require('fs');
 const discord = require('discord.js');
+const { Client, GatewayIntentBits, Events, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = discord;
 process.on('unhandledRejection', (reason)=>{ console.error('[unhandledRejection]', (reason && reason.message) || reason); });
 process.on('uncaughtException', (err)=>{ console.error('[uncaughtException]', (err && err.message) || err); });
 
@@ -26,6 +27,7 @@ let DISCORD_CLIENT_ID = process.env.DISCORD_CLIENT_ID || '1520933782667001856';
 let DISCORD_CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET || '';
 let DISCORD_REDIRECT_URI = process.env.DISCORD_REDIRECT_URI || `https://mr-gen.shop:${PORT}/auth/discord/callback`;
 let BOT_TOKEN = process.env.BOT_TOKEN || process.env.DISCORD_BOT_TOKEN || '';
+let BOT_API_TOKEN = process.env.BOT_API_TOKEN || BOT_TOKEN;
 let ADMIN_IDS = (process.env.ADMIN_IDS || '1520933782667001856').split(',').map(s=>s.trim()).filter(Boolean);
 // ===== Wallet / Recharge config =====
 let RECEIVE_IBAN = process.env.RECEIVE_IBAN || '';
@@ -50,6 +52,7 @@ if (saved.ZAPZONEX_PLACE_ID) ZAPZONEX_PLACE_ID = saved.ZAPZONEX_PLACE_ID;
         if (saved.DISCORD_CLIENT_SECRET) { DISCORD_CLIENT_SECRET = saved.DISCORD_CLIENT_SECRET; process.env.DISCORD_CLIENT_SECRET = saved.DISCORD_CLIENT_SECRET; }
         if (saved.ADMIN_IDS) ADMIN_IDS = saved.ADMIN_IDS;
         if (saved.BOT_TOKEN) BOT_TOKEN = saved.BOT_TOKEN;
+        if (saved.BOT_API_TOKEN) BOT_API_TOKEN = saved.BOT_API_TOKEN;
         console.log('📂 تم تحميل config.json');
     }
     // جرب تحميل من bot/.env لو ما لقى
@@ -519,7 +522,7 @@ app.post('/api/admin/bot-accounts', requireAdmin, (req,res)=>{
 // ===== Discord bot solve (called by the bot, verified via BOT_TOKEN) =====
 app.post('/api/bot/solve', async (req,res)=>{
   const auth = req.get('x-bot-token');
-  if (!BOT_TOKEN || auth !== BOT_TOKEN) return res.status(403).json({ status:'error', message:'Forbidden' });
+  if (!BOT_API_TOKEN || auth !== BOT_API_TOKEN) return res.status(403).json({ status:'error', message:'Forbidden' });
   const body = req.body || {};
   const username = body.username; const password = body.password; const discordId = body.discordId;
   if (!username || !password) return res.status(400).json({ status:'error', message:'username & password required' });
@@ -673,6 +676,115 @@ app.get('/', function(req,res){ res.sendFile(path.join(__dirname,'public','index
 
 
 
+let botClient = null;
+async function postButtonMessage(channel, opts) {
+  opts = opts || {};
+  const title = (opts.title && opts.title.trim()) ? opts.title.trim() : '# اصلاح حسابات التحقق';
+  const description = (opts.description && opts.description.trim()) ? opts.description.trim() : 'شريت حساب من عندنا وطلع لك اختبار "تحقق من أنك لست روبوت"؟\n\nلا تشيل هم! كل اللي عليك تضغط على الزر تحت وتكتب بيانات الحساب بالشكل التالي:\nUsername:Password\n\nبنفحص الحساب بسرعة وبسرية تامة، وإذا تبين أنه من متجرنا بنحل لك المشكلة ونصلحه فوراً.';
+  try {
+    const msgs = await channel.messages.fetch({ limit: 20 });
+    for (const m of msgs.values()) { if (botClient && botClient.user && m.author.id === botClient.user.id && m.components && m.components.length) { try { await m.delete(); } catch (e) {} } }
+  } catch (e) {}
+  const components = [
+    {
+      type: 17,
+      accent_color: 0x1e40af,
+      components: [
+        { type: 10, content: title },
+        { type: 10, content: description },
+        ...((opts.image && opts.image.trim()) ? [ { type: 12, items: [ { media: { url: opts.image.trim() } } ] } ] : []),
+        {
+          type: 1,
+          components: [
+            { type: 2, style: 1, label: 'حل كابتشا', emoji: { name: '🔓' }, custom_id: 'btn_solve_captcha' }
+          ]
+        }
+      ]
+    }
+  ];
+  await channel.send({ flags: 32768, components });
+}
+
+app.post('/api/admin/discord/send-embed', requireAdmin, async (req, res) => {
+  try {
+    if (!botClient || !botClient.isReady()) return res.status(503).json({ error: 'البوت غير جاهز بعد' });
+    const { title, description, image } = req.body || {};
+    if (!description && !title) return res.status(400).json({ error: 'اكتب عنواناً أو نصاً' });
+    const channelId = process.env.BOT_CHANNEL_ID || '';
+    if (!channelId) return res.status(400).json({ error: 'BOT_CHANNEL_ID غير مضبوط' });
+    const channel = botClient.channels.cache.get(channelId);
+    if (!channel || !(channel.isTextBased && channel.isTextBased())) return res.status(404).json({ error: 'الروم غير موجود أو مو نصي' });
+    await postButtonMessage(channel, { title: title || '', description: description || '', image: image || '' });
+    res.json({ ok: true, message: 'تم إرسال الرسالة للديسكورد' });
+  } catch (e) { res.status(500).json({ error: e.message || 'خطأ' }); }
+});
+
+function startBot({ getBotToken, getApiToken, getWebsiteUrl, isAdminUser }) {
+  const BOT_TOKEN = getBotToken();
+  if (!BOT_TOKEN) { console.log('[BOT] BOT_TOKEN غير مضبوط — البوت متوقف'); return; }
+  try {
+    const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
+    client.on('error', (e) => { console.error('[BOT] connection error', (e && e.message) || e); });
+    function buildSolveModal() {
+      const userInput = new TextInputBuilder().setCustomId('bot_user').setLabel('اسم المستخدم').setStyle(TextInputStyle.Short).setRequired(true);
+      const passInput = new TextInputBuilder().setCustomId('bot_pass').setLabel('كلمة المرور').setStyle(TextInputStyle.Short).setRequired(true);
+      return new ModalBuilder().setCustomId('bot_solve_modal').setTitle('حل الكابتشا').addComponents(new ActionRowBuilder().addComponents(userInput), new ActionRowBuilder().addComponents(passInput));
+    }
+    // postButtonMessage معرّفة على مستوى الملف (تحت)
+    client.on(Events.InteractionCreate, async (interaction) => {
+      try {
+        if (interaction.isChatInputCommand()) {
+          if (interaction.commandName === 'setup') {
+            if (!isAdminUser(interaction.user)) { await interaction.reply({ content: '❌ ليس لديك صلاحية لاستخدام هذا الأمر', ephemeral: true }); return; }
+            const tch = interaction.channel;
+            if (!tch || !(tch.isTextBased && tch.isTextBased())) { await interaction.reply({ content: '❌ استخدم الأمر داخل روم نصي', ephemeral: true }); return; }
+            await interaction.reply({ content: '⏳ جاري نشر رسالة حل الكابتشا...', ephemeral: true });
+            try { await postButtonMessage(tch); await interaction.editReply({ content: '✅ تم نشر الرسالة في هذا الروم' }); }
+            catch (e) { await interaction.editReply({ content: '❌ تعذر نشر الرسالة' }); }
+          }
+          return;
+        }
+        if (interaction.isButton()) {
+          if (interaction.customId === 'btn_solve_captcha') {
+            await interaction.showModal(buildSolveModal());
+          }
+        } else if (interaction.isModalSubmit()) {
+          if (interaction.customId === 'bot_solve_modal') {
+            await interaction.deferReply({ ephemeral: true });
+            const username = interaction.fields.getTextInputValue('bot_user');
+            const password = interaction.fields.getTextInputValue('bot_pass');
+            const discordId = interaction.user.id;
+            let msg;
+            try {
+              const resp = await axios.post(getWebsiteUrl() + '/api/bot/solve', { username: username, password: password, discordId: discordId }, { headers: { 'Content-Type': 'application/json', 'x-bot-token': (getApiToken ? getApiToken() : getBotToken()) }, timeout: 100000, validateStatus: () => true });
+              const d = resp.data || {}; const st = resp.status;
+              if (st === 404) msg = '❌ ' + (d.message || 'الحساب غير مسجل');
+              else if (st === 403) msg = '❌ توكن الربط غير مطابق — تأكد BOT_API_TOKEN في البوت يساوي الموقع';
+              else if (st === 429) msg = '⏳ ' + (d.message || 'انتظر قليلاً');
+              else if (d.solved) msg = '✅ تم حل الكابتشا لحساب: ' + username;
+              else if (d.status === 'already') msg = '⏭️ الحساب محلول مسبقاً: ' + username;
+              else if (d.status === 'failed') msg = '❌ فشل الحل: ' + (d.error || 'غير معروف');
+              else msg = '❌ ' + (d.message || 'خطأ');
+            } catch (e) { const code = e.code || (e.response && e.response.status) || ''; msg = '❌ تعذر الاتصال بالموقع (' + getWebsiteUrl() + ') ' + code; }
+            await interaction.editReply({ content: msg });
+          }
+        }
+      } catch (e) { console.error('[BOT] interaction error', e); try { await interaction.reply({ content: 'خطأ في البوت', ephemeral: true }); } catch (_) {} }
+    });
+    client.on(Events.ClientReady, async (c) => {
+      botClient = c;
+      console.log('[BOT] دخل كـ', c.user.tag);
+      try {
+        const setupCmd = { name: 'setup', description: 'نشر رسالة حل الكابتشا (MR Solver)' };
+        c.guilds.cache.forEach((g) => { g.commands.set([setupCmd]).catch(() => {}); });
+        console.log('[BOT] تم تسجيل امر /setup');
+      } catch (e) { console.error('[BOT] تعذر تسجيل الامر', e); }
+      console.log('[BOT] جاهز — بث الرسائل عبر لوحة التحكم (BOT_CHANNEL_ID=' + (process.env.BOT_CHANNEL_ID || '') + ')');
+    });
+    client.login(BOT_TOKEN).catch((e) => console.error('[BOT] login failed', e.message));
+  } catch (e) { console.error('[BOT] failed to start', e); }
+}
+
 app.listen(PORT, function(){
     console.log('========================================');
     console.log('🔥 MR CHECKER Server running');
@@ -684,9 +796,8 @@ app.listen(PORT, function(){
     if(!DISCORD_CLIENT_SECRET) console.log('⚠️  ضع DISCORD_CLIENT_SECRET في .env أو عدل من صفحة الادمن');
     console.log('========================================');
     if (process.env.BOT_ENABLED !== 'false') {
-      const { startBot } = require('./bot/bot');
-      startBot({ getBotToken: () => BOT_TOKEN, getWebsiteUrl: () => 'http://127.0.0.1:' + PORT, isAdminUser });
+      startBot({ getBotToken: () => BOT_TOKEN, getApiToken: () => BOT_API_TOKEN, getWebsiteUrl: () => (process.env.WEBSITE_URL || 'https://mr-gen.shop').replace(/\/+$/, ''), isAdminUser });
     } else {
-      console.log('[BOT] معطّل على هذا الاستضافة (BOT_ENABLED=false) — البوت يشتغل كملف مستقل');
+      console.log('[BOT] معطّل (BOT_ENABLED=false)');
     }
 });
