@@ -450,7 +450,7 @@ curl -X POST "https://api.zapzonex.net/v1/solve?priority=premium" \
             <div class="admin-auth">
               <a id="authLink" href="/auth/discord" class="btn btn-discord"><i class="fab fa-discord"></i> <span data-i18n="loginDiscord">تسجيل دخول بالديسكورد</span></a>
               <span class="muted" data-i18n="adminBotInviteText">البوت يحتاج دعوة:</span>
-              <a id="botInvite" href="https://discord.com/api/oauth2/authorize?client_id=1520933782667001856&permissions=8&scope=bot%20applications.commands" target="_blank" class="admin-link" data-i18n="adminBotInvite">دعوة البوت للسيرفر</a>
+              <a id="botInvite" href="https://discord.com/api/oauth2/authorize?client_id=1479176745151103040&permissions=8&scope=bot%20applications.commands" target="_blank" class="admin-link" data-i18n="adminBotInvite">دعوة البوت للسيرفر</a>
             </div>
           </div>
 
@@ -462,6 +462,18 @@ curl -X POST "https://api.zapzonex.net/v1/solve?priority=premium" \
               <button id="botAccountsSave" class="btn btn-purple"><i class="fas fa-save"></i> حفظ الحسابات</button>
               <span id="botAccountsCount" class="muted" style="font:12px Cairo"></span>
             </div>
+          </div>
+
+          <div class="card admin-card">
+            <div class="admin-card-head"><i class="fas fa-bullhorn"></i> بث رسالة ديسكورد</div>
+            <p class="muted" style="font:12px Cairo">اكتب رسالة الـEmbed واضغط إرسال، ينشرها البوت في الروم المحدد (BOT_CHANNEL_ID) مع زر «حل كابتشا».</p>
+            <label class="cfg-field"><span>العنوان (اختياري)</span><input id="broadcastTitle" type="text" placeholder="# اصلاح حسابات التحقق" dir="rtl"></label>
+            <label class="cfg-field"><span>نص الرسالة</span><textarea id="broadcastDesc" dir="rtl" placeholder="اكتب هنا نص الرسالة..." style="width:100%;min-height:90px;background:#09090b;border:1px solid #26262e;border-radius:8px;padding:10px;color:#fff;font:13px Cairo"></textarea></label>
+            <label class="cfg-field"><span>رابط صورة (اختياري)</span><input id="broadcastImage" type="text" placeholder="https://..." dir="ltr"></label>
+            <div class="admin-actions">
+              <button id="broadcastSend" class="btn btn-purple"><i class="fas fa-paper-plane"></i> إرسال للديسكورد</button>
+            </div>
+            <div id="broadcastResult" class="muted" style="font:12px Cairo;margin-top:8px"></div>
           </div>
         </div>
       </div>
