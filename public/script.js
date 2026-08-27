@@ -942,6 +942,23 @@
             var cnt = document.getElementById('botAccountsCount'); if (cnt) cnt.textContent = (d.count||0) + ' حساب محفوظ';
         } catch(e){}
     }
+    async function sendBroadcast(){
+        var title = document.getElementById('broadcastTitle');
+        var desc = document.getElementById('broadcastDesc');
+        var img = document.getElementById('broadcastImage');
+        var res = document.getElementById('broadcastResult');
+        var t = title ? title.value.trim() : '';
+        var d = desc ? desc.value.trim() : '';
+        var i = img ? img.value.trim() : '';
+        if (!d && !t) { if (res) res.textContent = '❌ اكتب عنواناً أو نصاً'; return; }
+        if (res) res.textContent = '⏳ جاري الإرسال...';
+        try {
+            var r = await fetch('/api/admin/discord/send-embed', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'include', body: JSON.stringify({ title: t, description: d, image: i }) });
+            var data = await r.json();
+            if (res) res.textContent = r.ok ? ('✅ ' + (data.message || 'تم الإرسال')) : ('❌ ' + (data.error || r.status));
+        } catch (e) { if (res) res.textContent = '❌ خطأ: ' + e.message; }
+    }
+
     async function saveAdminConfig(){
         var payload = {};
         var v;
@@ -1343,6 +1360,8 @@
         if (adminRefreshBtn) adminRefreshBtn.addEventListener('click', loadAdminData);
         var adminSaveBtn = document.getElementById('adminSave');
         if (adminSaveBtn) adminSaveBtn.addEventListener('click', saveAdminConfig);
+        var broadcastSendBtn = document.getElementById('broadcastSend');
+        if (broadcastSendBtn) broadcastSendBtn.addEventListener('click', sendBroadcast);
         var botAccountsSave = document.getElementById('botAccountsSave');
         if (botAccountsSave) botAccountsSave.addEventListener('click', function () {
           var ta = document.getElementById('botAccountsText'); var cnt = document.getElementById('botAccountsCount');
