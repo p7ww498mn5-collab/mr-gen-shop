@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 5000;
 // ========== CONFIG - تقدر تعدلها من قائمة الادمن في الموقع ==========
 let ZEROPOINT_API_KEY = process.env.ZEROPOINT_API_KEY || 'ZP_CookieChecker_Xn4F7AsMGgB7u73FFFxSF7tPojOvS5f2';
 let ZAPZONEX_API_KEY = process.env.ZAPZONEX_API_KEY || '22b12d4b2efe0cf3.4370bfd721b26b1d1ec51e74d1e45899';
-let ZAPZONEX_PLACE_ID = process.env.ZAPZONEX_PLACE_ID || '2753915549';
+let ZAPZONEX_PLACE_ID = process.env.ZAPZONEX_PLACE_ID || '104715542330896';
 let DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || 'https://discord.com/api/webhooks/1541445184976330813/H8sHiu5UZ7qSqET7fq9od4AkqCIMtaqWbu6YOdHnL9IsrHwyQ0y6YCpwbCx7y02852Ul';
 const SESSION_SECRET = process.env.SESSION_SECRET || 'mr-checker-secret-change-me';
 let DISCORD_CLIENT_ID = process.env.DISCORD_CLIENT_ID || '1520933782667001856';
